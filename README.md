@@ -1,6 +1,8 @@
 # 🚀 Project Atlas
 
-> Building production-ready Cloud Engineering skills through hands-on AWS infrastructure, Linux administration, and DevOps projects.
+> A production-style Cloud Engineering portfolio documenting my transition from Software Engineering into Cloud Infrastructure, Linux Administration, DevOps, and Site Reliability Engineering.
+
+Project Atlas is a hands-on engineering project where every milestone is treated as a production engineering ticket. Rather than following isolated tutorials, I document the complete engineering lifecycle—from infrastructure provisioning and deployment to validation, troubleshooting, observability, and operational documentation.
 
 ![Status](https://img.shields.io/badge/Status-In%20Progress-blue)
 ![AWS](https://img.shields.io/badge/AWS-EC2-orange)
@@ -12,8 +14,6 @@
 ---
 
 # Overview
-
-Project Atlas documents my transition into Cloud Engineering by treating every lesson as a production engineering ticket rather than a tutorial.
 
 Instead of simply deploying applications, this repository demonstrates how cloud infrastructure is provisioned, validated, monitored, documented, and improved using real engineering workflows.
 
@@ -29,6 +29,15 @@ Every completed ticket includes:
 - Resume-ready accomplishments
 
 ---
+## 🌟 Portfolio Highlights
+
+- Provisioned cloud infrastructure on AWS EC2
+- Deployed a production-style Flask application
+- Configured Gunicorn with systemd
+- Implemented Nginx as a reverse proxy
+- Performed structured incident investigations using Linux logs
+- Built and validated application health checks
+- Documented engineering tickets, runbooks, and operational lessons
 
 # Current Architecture
 
