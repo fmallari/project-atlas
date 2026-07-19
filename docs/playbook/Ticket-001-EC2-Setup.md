@@ -57,7 +57,7 @@ Linux Shell
 
 Successfully provisioned an Ubuntu EC2 instance for Project Atlas. The instance is running and passed all AWS status checks before application deployment.
 
-![Project Atlas EC2 Instance](../../screenshots/ticket-001-ec2-instance.png)
+![Project Atlas EC2 Instance](../../screenshots/Ticket-001/ticket-001-ec2-instance.png)
 
 ## Commands Used
 
