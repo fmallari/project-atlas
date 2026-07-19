@@ -70,3 +70,9 @@ Benefits of this architecture include:
 - Foundation for HTTPS, load balancing, and future scaling
 
 This deployment mirrors a common production pattern used for Python web applications on Linux servers.
+
+## Lessons Learned
+
+- A reverse proxy separates public traffic from the application server.
+- Keeping Gunicorn bound to `localhost` improves security by preventing direct external access.
+- Validating each deployment layer independently (service status, HTTP response, browser access) makes troubleshooting much more efficient.
