@@ -20,32 +20,53 @@ Configured Nginx as a reverse proxy in front of Gunicorn to handle incoming HTTP
 
 ## Evidence
 
-### Nginx Service Status
+### Nginx Service Verification
 
-Nginx was configured and verified as an active systemd service on the EC2 instance.
+Nginx was installed, enabled as a systemd service, and verified to be actively running on the EC2 instance.
 
-![Nginx service status](../../screenshots/Ticket-004/nginx-status.png)
+![Nginx Service Status](../../screenshots/Ticket-004/nginx-status.png)
 
-### Reverse Proxy HTTP Validation
+---
 
-An HTTP request sent through Nginx returned `HTTP/1.1 200 OK`. The response identified Nginx as the public-facing server, confirming that requests were being accepted on port `80` and forwarded to Gunicorn.
+### Reverse Proxy Validation
 
-![Nginx HTTP 200 response](../../screenshots/Ticket-004/nginx-http200.png)
+HTTP requests sent to the server on port 80 were successfully received by Nginx and forwarded to the Gunicorn application server listening on localhost:5000.
+
+The response returned:
+
+- HTTP/1.1 200 OK
+- Server: nginx
+
+This verified that Nginx was functioning as the public-facing reverse proxy while Gunicorn remained isolated from direct public access.
+
+![Nginx HTTP Validation](../../screenshots/Ticket-004/nginx-http200.png)
+
+---
 
 ### Browser Validation
 
-The Flask application was successfully accessed through the EC2 instance's public HTTP endpoint without exposing port `5000` in the browser URL.
+The application was successfully accessed through the EC2 instance's public IP address without exposing port 5000.
 
-![Application accessed through Nginx](../../screenshots/Ticket-004/nginx-browser.png)
+This confirms the complete request path:
+
+Client Browser
+→ Nginx (Port 80)
+→ Gunicorn (Port 5000)
+→ Flask Application
+
+![Browser Validation](../../screenshots/Ticket-004/nginx-browser.png)
+
+---
 
 ### Validation Result
 
-The complete request path was validated:
+The reverse proxy configuration successfully separated the web server from the application server.
 
-```text
-Client → Nginx port 80 → Gunicorn port 5000 → Flask application
+Benefits of this architecture include:
 
-## Outcome
+- Public traffic terminates at Nginx
+- Gunicorn remains accessible only through localhost
+- Improved security through reduced attack surface
+- Foundation for HTTPS, load balancing, and future scaling
 
-Successfully exposed the Flask application through Nginx while separating web server responsibilities from the application server.# Ticket #004 – Configure Nginx Reverse Proxy
-
+This deployment mirrors a common production pattern used for Python web applications on Linux servers.
