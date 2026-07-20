@@ -1,6 +1,14 @@
 # 🚀 Project Atlas
 
-> A production-style Cloud Engineering portfolio documenting my transition from Software Engineering into Cloud Infrastructure, Linux Administration, DevOps, and Site Reliability Engineering.
+Project Atlas is a hands-on Cloud Engineering and Site Reliability Engineering (SRE) portfolio project documenting the design, deployment, security, and operation of production-style infrastructure on AWS.
+
+Each ticket represents a real engineering task with implementation steps, troubleshooting notes, verification commands, and evidence screenshots.
+
+## Live Application
+
+🌐 https://francismallari.dev
+
+Repository: https://github.com/fmallari/project-atlas
 
 Project Atlas is a hands-on engineering project where every milestone is treated as a production engineering ticket. Rather than following isolated tutorials, I document the complete engineering lifecycle—from infrastructure provisioning and deployment to validation, troubleshooting, observability, and operational documentation.
 
@@ -41,28 +49,13 @@ Every completed ticket includes:
 
 # Current Architecture
 
-```text
-                Internet
-                    │
-                    ▼
-             ┌─────────────┐
-             │    Nginx    │
-             │ ReverseProxy│
-             └─────────────┘
-                    │
-                    ▼
-             ┌─────────────┐
-             │  Gunicorn   │
-             │ WSGI Server │
-             └─────────────┘
-                    │
-                    ▼
-             ┌─────────────┐
-             │ Flask App   │
-             └─────────────┘
-                    │
-                    ▼
-              Ubuntu EC2
+```mermaid
+flowchart TD
+    User --> DNS["francismallari.dev"]
+    DNS --> HTTPS["HTTPS :443"]
+    HTTPS --> Nginx
+    Nginx --> Gunicorn
+    Gunicorn --> Flask
 ```
 
 ---
@@ -114,7 +107,8 @@ Every completed ticket includes:
 | ✅ 004 | Configure Nginx Reverse Proxy | Complete |
 | ✅ 005 | Investigate Production Incident | Complete |
 | ✅ 006 | Implement Application Health Checks | Complete |
-
+| ✅ 007 | HTTPS with Let's Encrypt |
+| 🚧 008 | Monitoring & Operations |
 ---
 
 # Engineering Principles
@@ -145,7 +139,6 @@ project-atlas/
 │
 └── README.md
 ```
-
 ---
 
 # Skills Demonstrated
