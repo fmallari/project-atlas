@@ -129,37 +129,37 @@ HTTPS immediately became accessible.
 
 ### DNS Records
 
-![DNS Records](../screenshots/Ticket-007/dns-records.png)
+![DNS Records](../../screenshots/Ticket-007/dns-records.png)
 
 ---
 
 ### DNS Validation
 
-![DNS Validation](../screenshots/Ticket-007/dns-validation.png)
+![DNS Validation](../../screenshots/Ticket-007/dns-validation.png)
 
 ---
 
 ### Certbot Installation
 
-![Certbot Success](../screenshots/Ticket-007/certbot-success.png)
+![Certbot Success](../../screenshots/Ticket-007/certbot-success.png)
 
 ---
 
 ### Certificate Verification
 
-![Certificate Details](../screenshots/Ticket-007/certificate-details.png)
+![Certificate Details](../../screenshots/Ticket-007/certificate-details.png)
 
 ---
 
 ### HTTPS Validation
 
-![HTTPS Curl](../screenshots/Ticket-007/curl-https.png)
+![HTTPS Curl](../../screenshots/Ticket-007/curl-https.png)
 
 ---
 
 ### Browser Verification
 
-![HTTPS Browser](../screenshots/Ticket-007/https-browser.png)
+![HTTPS Browser](../../screenshots/Ticket-007/https-browser.png)
 
 ---
 
