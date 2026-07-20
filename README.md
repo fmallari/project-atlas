@@ -107,8 +107,8 @@ flowchart TD
 | ✅ 004 | Configure Nginx Reverse Proxy | Complete |
 | ✅ 005 | Investigate Production Incident | Complete |
 | ✅ 006 | Implement Application Health Checks | Complete |
-| ✅ 007 | HTTPS with Let's Encrypt |
-| 🚧 008 | Monitoring & Operations |
+| ✅ 007 | HTTPS with Let's Encrypt | Complete |
+| 🚧 008 | Monitoring & Operations | In progress |
 ---
 
 # Engineering Principles
