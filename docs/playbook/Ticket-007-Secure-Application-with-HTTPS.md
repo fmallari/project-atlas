@@ -6,6 +6,13 @@ Secure the production Flask application by configuring HTTPS using Let's Encrypt
 
 ---
 
+## Live Application
+
+- https://francismallari.dev
+- https://www.francismallari.dev
+
+---
+
 ## Technologies Used
 
 - AWS EC2
@@ -21,20 +28,14 @@ Secure the production Flask application by configuring HTTPS using Let's Encrypt
 
 ## Architecture
 
-Internet
-        │
-        ▼
-francismallari.dev
-        │
-HTTPS (443)
-        │
-Let's Encrypt TLS Certificate
-        │
-Nginx
-        │
-Gunicorn
-        │
-Flask Application
+```mermaid
+flowchart TD
+    Internet --> DNS["francismallari.dev"]
+    DNS --> HTTPS["HTTPS (443)"]
+    HTTPS --> Nginx
+    Nginx --> Gunicorn
+    Gunicorn --> Flask
+```
 
 ---
 
@@ -164,12 +165,10 @@ HTTPS immediately became accessible.
 
 ## Lessons Learned
 
-- DNS propagation can take time.
-- Certbot automatically updates Nginx.
-- HTTPS requires port 443 to be open in the AWS Security Group.
-- Let's Encrypt certificates are valid for 90 days and can be renewed automatically.
-- Nginx terminates TLS before forwarding requests to Gunicorn.
-
+- DNS changes may require propagation time before browsers resolve the new records.
+- HTTPS on AWS requires both a valid TLS certificate and an inbound Security Group rule for TCP port 443.
+- Certbot can automatically update Nginx configuration and configure certificate renewal.
+- Nginx terminates TLS and proxies requests to Gunicorn over the local interface, keeping the application server off the public network.
 ---
 
 ## Outcome
