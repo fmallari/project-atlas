@@ -147,7 +147,7 @@ HTTPS immediately became accessible.
 
 ### Certificate Verification
 
-![Certificate Details](../../screenshots/Ticket-007/certificate-details.png)
+![Certificate Details](../../screenshots/Ticket-007/cert-details.png)
 
 ---
 
