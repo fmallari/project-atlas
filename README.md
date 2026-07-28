@@ -1,8 +1,36 @@
-# 🚀 Project Atlas
+Project Atlas
 
-Project Atlas is a hands-on Cloud Engineering and Site Reliability Engineering (SRE) portfolio project documenting the design, deployment, security, and operation of production-style infrastructure on AWS.
+A production-style AWS Cloud Engineering and Site Reliability Engineering environment focused on secure deployment, observability, incident response, and repeatable operations.
 
-Each ticket represents a real engineering task with implementation steps, troubleshooting notes, verification commands, and evidence screenshots.
+Project Atlas demonstrates how I design, deploy, secure, monitor, troubleshoot, and document a Linux-hosted application on AWS.
+
+Rather than treating each milestone as an isolated tutorial, I manage the project through engineering tickets that include an objective, implementation plan, validation evidence, incident notes, operational lessons, and runbook updates.
+
+Project Snapshot
+
+Cloud platform: AWS
+Infrastructure: EC2, Linux, IAM
+Application stack: Python, Flask, Gunicorn, Nginx
+Observability: Amazon CloudWatch, health checks, system and application logs
+Security: IAM roles and policies, least-privilege access, HTTPS/TLS, DNS
+Operations: systemd, SSH, service validation, incident response, root-cause analysis
+Documentation: Engineering tickets, screenshots, runbooks, architecture notes, and incident reports
+
+Selected Engineering Outcomes
+
+* Deployed and operated a production-style Python application on AWS EC2.
+* Configured Nginx as a reverse proxy and Gunicorn as a systemd-managed application service.
+* Secured public application traffic using DNS and HTTPS/TLS.
+* Implemented application health checks and Amazon CloudWatch monitoring for operational visibility.
+* Configured IAM roles and policies to provide controlled access to AWS services.
+* Investigated and resolved service failures using systemctl, journalctl, application logs, Nginx logs, and endpoint validation.
+* Documented infrastructure changes, validation results, incidents, and recovery procedures through reusable engineering playbooks.
+
+Engineering Principle
+
+Gather evidence before making changes.
+
+Every operational decision in Project Atlas is supported by logs, metrics, service status, endpoint testing, or documented system observations.
 
 ## Live Application
 
@@ -10,14 +38,6 @@ Each ticket represents a real engineering task with implementation steps, troubl
 
 Repository: https://github.com/fmallari/project-atlas
 
-Project Atlas is a hands-on engineering project where every milestone is treated as a production engineering ticket. Rather than following isolated tutorials, I document the complete engineering lifecycle—from infrastructure provisioning and deployment to validation, troubleshooting, observability, and operational documentation.
-
-![Status](https://img.shields.io/badge/Status-In%20Progress-blue)
-![AWS](https://img.shields.io/badge/AWS-EC2-orange)
-![Python](https://img.shields.io/badge/Python-3.x-blue)
-![Linux](https://img.shields.io/badge/Ubuntu-24.04-E95420)
-![Nginx](https://img.shields.io/badge/Nginx-Reverse%20Proxy-green)
-![Gunicorn](https://img.shields.io/badge/Gunicorn-WSGI-lightgrey)
 
 ---
 
@@ -34,7 +54,6 @@ Every completed ticket includes:
 - Incident investigation
 - Operational lessons
 - Runbook updates
-- Resume-ready accomplishments
 
 ---
 ## 🌟 Portfolio Highlights
@@ -49,14 +68,39 @@ Every completed ticket includes:
 
 # Current Architecture
 
-```mermaid
-flowchart TD
-    User --> DNS["francismallari.dev"]
-    DNS --> HTTPS["HTTPS :443"]
-    HTTPS --> Nginx
-    Nginx --> Gunicorn
-    Gunicorn --> Flask
-```
+                         Internet
+                             │
+                             ▼
+                    DNS / Custom Domain
+                             │
+                             ▼
+                         HTTPS/TLS
+                             │
+                             ▼
+                    ┌─────────────────┐
+                    │      Nginx      │
+                    │  Reverse Proxy  │
+                    └────────┬────────┘
+                             │
+                             ▼
+                    ┌─────────────────┐
+                    │    Gunicorn     │
+                    │  systemd Service│
+                    └────────┬────────┘
+                             │
+                             ▼
+                    ┌─────────────────┐
+                    │   Flask App     │
+                    │ / and /health   │
+                    └─────────────────┘
+                             │
+                  ┌──────────┴──────────┐
+                  ▼                     ▼
+          Amazon CloudWatch      Linux / App Logs
+          Metrics and Logs       journalctl / Nginx
+
+                    Hosted on AWS EC2
+                 Access controlled with IAM
 
 ---
 
@@ -108,7 +152,11 @@ flowchart TD
 | ✅ 005 | Investigate Production Incident | Complete |
 | ✅ 006 | Implement Application Health Checks | Complete |
 | ✅ 007 | HTTPS with Let's Encrypt | Complete |
-| 🚧 008 | Monitoring & Operations | In progress |
+| ✅ 008 | Validate production health | Complete |
+| ✅ 009 | Resolve 502 service failure | Complete |
+| ✅ 010 | Configure IAM permissions | Complete |
+| ✅ 011 | Implement CloudWatch visibility | Complete |
+
 ---
 
 # Engineering Principles
@@ -139,24 +187,6 @@ project-atlas/
 │
 └── README.md
 ```
----
-
-# Skills Demonstrated
-
-- Linux Administration
-- Cloud Infrastructure
-- Python Development
-- Flask Deployment
-- Gunicorn Configuration
-- Nginx Administration
-- Reverse Proxy Configuration
-- Linux Service Management
-- HTTP Troubleshooting
-- Application Monitoring
-- Incident Investigation
-- Git Version Control
-- Technical Documentation
-
 ---
 
 # Roadmap
@@ -202,14 +232,6 @@ project-atlas/
 - Using `journalctl` for incident response
 - Validating infrastructure with `curl`
 - Reading Nginx access and error logs
-
-# Why This Repository Exists
-
-This repository documents my journey from software development into Cloud Engineering.
-
-My goal isn't simply to build applications.
-
-My goal is to build, operate, troubleshoot, document, and continuously improve reliable cloud infrastructure using industry-standard engineering practices.
 
 ---
 
