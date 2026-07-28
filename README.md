@@ -6,25 +6,37 @@ Project Atlas demonstrates how I design, deploy, secure, monitor, troubleshoot, 
 
 Rather than treating each milestone as an isolated tutorial, I manage the project through engineering tickets that include an objective, implementation plan, validation evidence, incident notes, operational lessons, and runbook updates.
 
-## Project Snapshot
+Every completed ticket includes:
 
-Cloud platform: AWS
-Infrastructure: EC2, Linux, IAM
-Application stack: Python, Flask, Gunicorn, Nginx
-Observability: Amazon CloudWatch, health checks, system and application logs
-Security: IAM roles and policies, least-privilege access, HTTPS/TLS, DNS
-Operations: systemd, SSH, service validation, incident response, root-cause analysis
-Documentation: Engineering tickets, screenshots, runbooks, architecture notes, and incident reports
+- Business objective
+- Architecture
+- Implementation
+- Validation
+- Incident investigation
+- Operational lessons
+- Runbook updates
+
+---
+
+## Snapshot
+
+- Cloud platform: AWS
+- Infrastructure: EC2, Linux, IAM
+- Application stack: Python, Flask, Gunicorn, Nginx
+- Observability: Amazon CloudWatch, health checks, system and application logs
+- Security: IAM roles and policies, least-privilege access, HTTPS/TLS, DNS
+- Operations: systemd, SSH, service validation, incident response, root-cause analysis
+- Documentation: Engineering tickets, screenshots, runbooks, architecture notes, and incident reports
 
 ## Selected Engineering Outcomes
 
-* Deployed and operated a production-style Python application on AWS EC2.
-* Configured Nginx as a reverse proxy and Gunicorn as a systemd-managed application service.
-* Secured public application traffic using DNS and HTTPS/TLS.
-* Implemented application health checks and Amazon CloudWatch monitoring for operational visibility.
-* Configured IAM roles and policies to provide controlled access to AWS services.
-* Investigated and resolved service failures using systemctl, journalctl, application logs, Nginx logs, and endpoint validation.
-* Documented infrastructure changes, validation results, incidents, and recovery procedures through reusable engineering playbooks.
+- Deployed and operated a production-style Python application on AWS EC2.
+- Configured Nginx as a reverse proxy and Gunicorn as a systemd-managed application service.
+- Secured public application traffic using DNS and HTTPS/TLS.
+- Implemented application health checks and Amazon CloudWatch monitoring for operational visibility.
+- Configured IAM roles and policies to provide controlled access to AWS services.
+- Investigated and resolved service failures using systemctl, journalctl, application logs, Nginx logs, and endpoint validation.
+- Documented infrastructure changes, validation results, incidents, and recovery procedures through reusable engineering playbooks.
 
 ## Engineering Principles
 
@@ -45,21 +57,6 @@ Repository: https://github.com/fmallari/project-atlas
 
 ---
 
-# Overview
-
-Instead of simply deploying applications, this repository demonstrates how cloud infrastructure is provisioned, validated, monitored, documented, and improved using real engineering workflows.
-
-Every completed ticket includes:
-
-- Business objective
-- Architecture
-- Implementation
-- Validation
-- Incident investigation
-- Operational lessons
-- Runbook updates
-
----
 ## 🌟 Portfolio Highlights
 
 - Provisioned cloud infrastructure on AWS EC2
