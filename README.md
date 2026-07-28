@@ -70,7 +70,7 @@ Every completed ticket includes:
 - Built and validated application health checks
 - Documented engineering tickets, runbooks, and operational lessons
 
-# Current Architecture
+## Current Architecture
 
                          Internet
                              │
@@ -110,32 +110,32 @@ Every completed ticket includes:
 
 # Technology Stack
 
-## Cloud
+### Cloud
 
 - AWS EC2
 
-## Operating System
+### Operating System
 
 - Ubuntu Linux
 
-## Backend
+### Backend
 
 - Python
 - Flask
 - Gunicorn
 
-## Web Server
+### Web Server
 
 - Nginx
 
-## DevOps
+### DevOps
 
 - systemd
 - SSH
 - Git
 - GitHub
 
-## Monitoring & Troubleshooting
+### Monitoring & Troubleshooting
 
 - curl
 - journalctl
