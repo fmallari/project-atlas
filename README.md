@@ -1,4 +1,4 @@
-Project Atlas
+# Project Atlas
 
 A production-style AWS Cloud Engineering and Site Reliability Engineering environment focused on secure deployment, observability, incident response, and repeatable operations.
 
@@ -6,7 +6,7 @@ Project Atlas demonstrates how I design, deploy, secure, monitor, troubleshoot, 
 
 Rather than treating each milestone as an isolated tutorial, I manage the project through engineering tickets that include an objective, implementation plan, validation evidence, incident notes, operational lessons, and runbook updates.
 
-Project Snapshot
+## Project Snapshot
 
 Cloud platform: AWS
 Infrastructure: EC2, Linux, IAM
@@ -16,7 +16,7 @@ Security: IAM roles and policies, least-privilege access, HTTPS/TLS, DNS
 Operations: systemd, SSH, service validation, incident response, root-cause analysis
 Documentation: Engineering tickets, screenshots, runbooks, architecture notes, and incident reports
 
-Selected Engineering Outcomes
+## Selected Engineering Outcomes
 
 * Deployed and operated a production-style Python application on AWS EC2.
 * Configured Nginx as a reverse proxy and Gunicorn as a systemd-managed application service.
@@ -26,11 +26,15 @@ Selected Engineering Outcomes
 * Investigated and resolved service failures using systemctl, journalctl, application logs, Nginx logs, and endpoint validation.
 * Documented infrastructure changes, validation results, incidents, and recovery procedures through reusable engineering playbooks.
 
-Engineering Principle
+## Engineering Principles
 
-Gather evidence before making changes.
+Project Atlas follows a simple engineering philosophy:
 
-Every operational decision in Project Atlas is supported by logs, metrics, service status, endpoint testing, or documented system observations.
+> Gather evidence before making changes.
+
+Every operational decision is supported by logs, validation, testing, or system observations.
+
+---
 
 ## Live Application
 
@@ -141,7 +145,7 @@ Every completed ticket includes:
 
 ---
 
-# Completed Engineering Tickets
+## Completed Engineering Tickets
 
 | Ticket | Description | Status |
 |---------|-------------|--------|
@@ -156,16 +160,6 @@ Every completed ticket includes:
 | ✅ 009 | Resolve 502 service failure | Complete |
 | ✅ 010 | Configure IAM permissions | Complete |
 | ✅ 011 | Implement CloudWatch visibility | Complete |
-
----
-
-# Engineering Principles
-
-Project Atlas follows a simple engineering philosophy:
-
-> Gather evidence before making changes.
-
-Every operational decision is supported by logs, validation, testing, or system observations.
 
 ---
 
@@ -222,16 +216,6 @@ project-atlas/
 ## Sprint 6 – CI/CD
 
 - ⏳ GitHub Actions
-
----
-
-## Featured Lessons
-
-- How Nginx and Gunicorn work together
-- Why `/health` endpoints matter
-- Using `journalctl` for incident response
-- Validating infrastructure with `curl`
-- Reading Nginx access and error logs
 
 ---
 
