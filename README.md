@@ -28,15 +28,13 @@ Every completed ticket includes:
 - Operations: systemd, SSH, service validation, incident response, root-cause analysis
 - Documentation: Engineering tickets, screenshots, runbooks, architecture notes, and incident reports
 
-## Selected Engineering Outcomes
+## Recent Milestones
 
-- Deployed and operated a production-style Python application on AWS EC2.
-- Configured Nginx as a reverse proxy and Gunicorn as a systemd-managed application service.
-- Secured public application traffic using DNS and HTTPS/TLS.
-- Implemented application health checks and Amazon CloudWatch monitoring for operational visibility.
-- Configured IAM roles and policies to provide controlled access to AWS services.
-- Investigated and resolved service failures using systemctl, journalctl, application logs, Nginx logs, and endpoint validation.
-- Documented infrastructure changes, validation results, incidents, and recovery procedures through reusable engineering playbooks.
+- Implemented CloudWatch dashboards
+- Configured CPU alarms
+- Integrated SNS email notifications
+- Simulated production CPU load
+- Validated alerting pipeline end-to-end
 
 ## Engineering Principles
 
@@ -69,39 +67,32 @@ Repository: https://github.com/fmallari/project-atlas
 
 ## Current Architecture
 
-                         Internet
-                             │
-                             ▼
-                    DNS / Custom Domain
-                             │
-                             ▼
-                         HTTPS/TLS
-                             │
-                             ▼
-                    ┌─────────────────┐
-                    │      Nginx      │
-                    │  Reverse Proxy  │
-                    └────────┬────────┘
-                             │
-                             ▼
-                    ┌─────────────────┐
-                    │    Gunicorn     │
-                    │  systemd Service│
-                    └────────┬────────┘
-                             │
-                             ▼
-                    ┌─────────────────┐
-                    │   Flask App     │
-                    │ / and /health   │
-                    └─────────────────┘
-                             │
-                  ┌──────────┴──────────┐
-                  ▼                     ▼
-          Amazon CloudWatch      Linux / App Logs
-          Metrics and Logs       journalctl / Nginx
-
-                    Hosted on AWS EC2
-                 Access controlled with IAM
+                      Internet
+                     │
+                  HTTPS
+                     │
+               Amazon Route53
+                     │
+              Nginx Reverse Proxy
+                     │
+                Gunicorn WSGI
+                     │
+                Flask Application
+                 │            │
+                 │            ▼
+                 │       Amazon S3
+                 │
+                 ▼
+         Amazon CloudWatch
+         │              │
+         ▼              ▼
+     Dashboards      Alarms
+                        │
+                        ▼
+                    Amazon SNS
+                        │
+                        ▼
+                 Email Notifications
 
 ---
 
@@ -146,17 +137,19 @@ Repository: https://github.com/fmallari/project-atlas
 
 | Ticket | Description | Status |
 |---------|-------------|--------|
-| ✅ 001 | Provision AWS EC2 Development Server | Complete |
-| ✅ 002 | Deploy Flask Application | Complete |
-| ✅ 003 | Configure Gunicorn Application Server | Complete |
-| ✅ 004 | Configure Nginx Reverse Proxy | Complete |
-| ✅ 005 | Investigate Production Incident | Complete |
-| ✅ 006 | Implement Application Health Checks | Complete |
+| ✅ 001 | EC2 & SSH | Complete |
+| ✅ 002 | Python Environment | Complete |
+| ✅ 003 | Flask Deployment | Complete |
+| ✅ 004 | Nginx | Complete |
+| ✅ 005 | Health Checks | Complete |
+| ✅ 006 | Log Analysis | Complete |
 | ✅ 007 | HTTPS with Let's Encrypt | Complete |
-| ✅ 008 | Validate production health | Complete |
-| ✅ 009 | Resolve 502 service failure | Complete |
+| ✅ 008 | Production Health Checks | Complete |
+| ✅ 009 | Incident Response | Complete |
 | ✅ 010 | Configure IAM permissions | Complete |
 | ✅ 011 | Implement CloudWatch visibility | Complete |
+| ✅ 012 | Dashboards | Complete |
+| ✅ 013 | Alarms & SNS | Complete |
 
 ---
 
@@ -197,8 +190,8 @@ project-atlas/
 
 ## Sprint 3 – Logging
 
-- ⏳ Structured Logging
-- ⏳ Application Metrics
+- ✅ Structured Logging
+- ✅ Application Metrics
 
 ## Sprint 4 – Containerization
 
