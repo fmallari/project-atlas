@@ -1,8 +1,8 @@
 # Project Atlas
 
-A production-style AWS Cloud Engineering and Site Reliability Engineering environment focused on secure deployment, observability, incident response, and repeatable operations.
+Hi, I’m Francis, a software engineer transitioning into Cloud Engineering and Site Reliability Engineering. Project Atlas is my hands-on portfolio where I build, operate, monitor, and document production-inspired infrastructure using AWS and modern DevOps practices.
 
-Project Atlas demonstrates how I design, deploy, secure, monitor, troubleshoot, and document a Linux-hosted application on AWS.
+Here, I demonstrates how I design, deploy, secure, monitor, troubleshoot, and document a Linux-hosted application on AWS.
 
 Rather than treating each milestone as an isolated tutorial, I manage the project through engineering tickets that include an objective, implementation plan, validation evidence, incident notes, operational lessons, and runbook updates.
 
