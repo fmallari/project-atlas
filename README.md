@@ -1,10 +1,8 @@
 # Project Atlas
 
-Hi, I’m Francis, a software engineer transitioning into Cloud Engineering and Site Reliability Engineering. Project Atlas is my hands-on portfolio where I build, operate, monitor, and document production-inspired infrastructure using AWS and modern DevOps practices.
+Hi, I’m Francis, a software engineer transitioning into Cloud Engineering and Site Reliability Engineering. Project Atlas is a production-inspired Cloud Engineering and Site Reliability Engineering portfolio project documenting the deployment, operation, monitoring, and continuous improvement of a cloud-hosted web application on AWS.
 
-Here, I demonstrates how I design, deploy, secure, monitor, troubleshoot, and document a Linux-hosted application on AWS.
-
-Rather than treating each milestone as an isolated tutorial, I manage the project through engineering tickets that include an objective, implementation plan, validation evidence, incident notes, operational lessons, and runbook updates.
+The project follows an engineering playbook approach where each implementation is documented as an individual ticket, validated through testing, and supported with operational evidence.
 
 Every completed ticket includes:
 
@@ -64,74 +62,86 @@ Repository: https://github.com/fmallari/project-atlas
 - Performed structured incident investigations using Linux logs
 - Built and validated application health checks
 - Documented engineering tickets, runbooks, and operational lessons
+                         Internet
+                              │
+                           HTTPS
+                              │
+                     francismallari.dev
+                              │
+                              ▼
+                    Nginx Reverse Proxy
+                              │
+                              ▼
+                    Gunicorn Application Server
+                              │
+                              ▼
+                      Flask Web Application
+                       │                  │
+                       ▼                  ▼
+                 Amazon S3         CloudWatch Logs
+                                          │
+                                          ▼
+                                CloudWatch Metrics
+                                          │
+                                          ▼
+                                 CloudWatch Dashboard
+                                          │
+                                          ▼
+                                 CloudWatch Alarms
+                                          │
+                                          ▼
+                                      Amazon SNS
+                                          │
+                                          ▼
+                                 Email Notifications
 
-## Current Architecture
+---
 
-                      Internet
-                     │
-                  HTTPS
-                     │
-               Amazon Route53
-                     │
-              Nginx Reverse Proxy
-                     │
-                Gunicorn WSGI
-                     │
-                Flask Application
-                 │            │
-                 │            ▼
-                 │       Amazon S3
-                 │
-                 ▼
-         Amazon CloudWatch
-         │              │
-         ▼              ▼
-     Dashboards      Alarms
-                        │
-                        ▼
-                    Amazon SNS
-                        │
-                        ▼
-                 Email Notifications
+# Technology Stack 
+
+Capability | Technologies 
+
+Cloud Infrastructure | EC2, IAM, S3
+
+Web Stack | Flask, Gunicorn, Nginx
+
+Security | IAM Roles, HTTPS, Let’s Encrypt
+
+Observability | CloudWatch Logs, Metrics, Dashboards
+
+Alerting | CloudWatch Alarms, Amazon SNS
+
+Linux | Ubuntu, systemd, SSH
+
+Operations | Incident Response, Health Checks, Monitoring
 
 ---
 
-# Technology Stack
+# Production Features
 
-### Cloud
+✅ Production deployment on Amazon EC2
 
-- AWS EC2
+✅ Nginx reverse proxy
 
-### Operating System
+✅ Gunicorn application server
 
-- Ubuntu Linux
+✅ HTTPS with Let’s Encrypt
 
-### Backend
+✅ Health endpoint monitoring
 
-- Python
-- Flask
-- Gunicorn
+✅ Secure S3 uploads using IAM Roles
 
-### Web Server
+✅ Centralized CloudWatch logging
 
-- Nginx
+✅ Custom memory & disk metrics
 
-### DevOps
+✅ CloudWatch operational dashboard
 
-- systemd
-- SSH
-- Git
-- GitHub
+✅ CloudWatch alarms
 
-### Monitoring & Troubleshooting
+✅ Amazon SNS email notifications
 
-- curl
-- journalctl
-- systemctl
-- Nginx Access Logs
-- Nginx Error Logs
-
----
+✅ Incident simulation & validation
 
 ## Completed Engineering Tickets
 
@@ -173,44 +183,84 @@ project-atlas/
 ```
 ---
 
-# Roadmap
+# 🎯 Skills Demonstrated
 
-## Sprint 1 – Infrastructure
+Cloud Engineering
 
-- ✅ EC2
-- ✅ SSH
-- ✅ Flask
-- ✅ Gunicorn
-- ✅ Nginx
+* AWS EC2
+* Amazon S3
+* IAM Roles
+* CloudWatch
+* SNS
 
-## Sprint 2 – Observability
+Linux Administration
 
-- ✅ Incident Investigation
-- ✅ Health Checks
+* Ubuntu
+* SSH
+* systemd
+* journalctl
 
-## Sprint 3 – Logging
+Site Reliability Engineering
 
-- ✅ Structured Logging
-- ✅ Application Metrics
+* Monitoring
+* Alerting
+* Incident Response
+* Root Cause Analysis
+* Operational Validation
 
-## Sprint 4 – Containerization
+Networking
 
-- ⏳ Docker
-- ⏳ Docker Compose
+* Nginx
+* HTTPS
+* DNS
+* Reverse Proxy
 
-## Sprint 5 – Cloud Automation
+Software Engineering
 
-- ⏳ Terraform
-- ⏳ Infrastructure as Code
+* Flask
+* Python
+* Git
+* GitHub
 
-## Sprint 6 – CI/CD
+# 🛣 Roadmap
 
-- ⏳ GitHub Actions
+✅ Completed
+
+* Production Deployment
+* HTTPS
+* IAM Roles
+* S3 Integration
+* CloudWatch Logs
+* Metrics
+* Dashboards
+* Alerts
+* SNS Notifications
+
+🚧 In Progress
+
+* Automated Backups
+* Disaster Recovery
+
+🔜 Planned
+
+* Terraform Infrastructure as Code
+* CI/CD with GitHub Actions
+* Load Balancer
+* Auto Scaling
+* Docker
+* Amazon ECS
+
+Upcoming
+
+⬜ Automated Backups
+⬜ Disaster Recovery
+⬜ Infrastructure as Code (Terraform)
+⬜ CI/CD
+⬜ Docker
+⬜ ECS
 
 ---
 
-# Connect
+📫 Connect
 
-GitHub: https://github.com/fmallari
-
-LinkedIn: https://www.linkedin.com/in/fmallari/
+If you’d like to further discuss Cloud Engineering, Site Reliability Engineering, or software development, feel free to connect with me via LinkedIn: https://www.linkedin.com/in/fmallari/
