@@ -4,7 +4,7 @@
 
 Automatically recover the application whenever Gunicorn becomes unavailable by integrating CloudWatch, EventBridge, Systems Manager, and Run Command.
 
-# Architecture
+## Architecture
 
 Gunicorn Stops
       │
