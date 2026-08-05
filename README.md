@@ -16,274 +16,349 @@ Every completed ticket includes:
 
 ---
 
-## Snapshot
+## 🎯 Project Goals
 
-- Cloud platform: AWS
-- Infrastructure: EC2, Linux, IAM
-- Application stack: Python, Flask, Gunicorn, Nginx
-- Observability: Amazon CloudWatch, health checks, system and application logs
-- Security: IAM roles and policies, least-privilege access, HTTPS/TLS, DNS
-- Operations: systemd, SSH, service validation, incident response, root-cause analysis
-- Documentation: Engineering tickets, screenshots, runbooks, architecture notes, and incident reports
+- Build and operate a production-style cloud environment
 
-## Recent Milestones
+- Learn AWS services through hands-on implementation
 
-- Implemented CloudWatch dashboards
-- Configured CPU alarms
-- Integrated SNS email notifications
-- Simulated production CPU load
-- Validated alerting pipeline end-to-end
+- Practice Site Reliability Engineering (SRE) workflows
 
-## Engineering Principles
+- Document every change as an engineering playbook
 
-Project Atlas follows a simple engineering philosophy:
-
-> Gather evidence before making changes.
-
-Every operational decision is supported by logs, validation, testing, or system observations.
+- Simulate real-world incidents and recovery procedures
 
 ---
 
-## Live Application
+## 🏗️ Architecture
 
-🌐 https://francismallari.dev
+```text
 
-Repository: https://github.com/fmallari/project-atlas
+                    Internet
 
+                        │
 
----
+                        ▼
 
-## 🌟 Portfolio Highlights
+                  HTTPS (TLS)
 
-## Highlights
+                        │
 
-- Built and deployed a production-style Flask application on AWS EC2
-- Configured Nginx, Gunicorn, HTTPS, IAM Roles, and S3 integration
-- Implemented centralized logging with Amazon CloudWatch
-- Created custom metrics using CloudWatch Metric Filters
-- Built automated alerting using SNS
-- Automated incident remediation using EventBridge and Systems Manager
-- Designed and tested a self-healing infrastructure workflow
+                        ▼
 
-## Architecture
+                     Nginx
 
-Internet
-     │
-     ▼
- Route53 / DNS
-     │
-     ▼
- HTTPS (Let's Encrypt)
-     │
-     ▼
- Nginx
-     │
-     ▼
- Gunicorn
-     │
-     ▼
- Flask Application
- 
+                        │
 
- ### Monitoring Pipeline 
- 
+                        ▼
 
- CloudWatch Logs
-      │
-      ▼
- Metric Filter (HTTP 502)
-      │
-      ▼
- CloudWatch Alarm
-      │
-      ▼
- SNS Email Notification
-      │
-      ▼
- EventBridge
-      │
-      ▼
- Systems Manager Run Command
-      │
-      ▼
- Restart Gunicorn
+                    Gunicorn
+
+                        │
+
+                        ▼
+
+                 Flask Application
+
+                        │
+
+                        ▼
+
+                       S3
+
+```
 
 ---
 
-# Technology Stack 
+## 📈 Observability Pipeline
 
-Capability | Technologies 
+```text
 
-Cloud Infrastructure | EC2, IAM, S3
+                Nginx Logs
 
-Web Stack | Flask, Gunicorn, Nginx
+                     │
 
-Security | IAM Roles, HTTPS, Let’s Encrypt
+                     ▼
 
-Observability | CloudWatch Logs, Metrics, Dashboards
+             CloudWatch Logs
 
-Alerting | CloudWatch Alarms, Amazon SNS
+                     │
 
-Linux | Ubuntu, systemd, SSH
+                     ▼
 
-Operations | Incident Response, Health Checks, Monitoring
+              Metric Filter
+
+                     │
+
+                     ▼
+
+        Nginx502Count Metric
+
+                     │
+
+                     ▼
+
+            CloudWatch Alarm
+
+                     │
+
+             ┌───────────────┐
+
+             ▼               ▼
+
+        SNS Notification   EventBridge
+
+                                │
+
+                                ▼
+
+                      Systems Manager
+
+                                │
+
+                                ▼
+
+                   Restart Gunicorn
+
+                                │
+
+                                ▼
+
+                     Application Healthy
+
+```
 
 ---
 
-## ✅ Current Capabilities
+## ✅ Skills Demonstrated
 
-- AWS EC2 Ubuntu Server
-- Nginx Reverse Proxy
-- Gunicorn Application Server
-- Flask Web Application
-- HTTPS with Let's Encrypt
+### Infrastructure
+
+- AWS EC2 (Ubuntu)
+
 - IAM Roles
-- S3 File Uploads
+
+- Security Groups
+
+- Amazon S3
+
+- Route53 / DNS
+
+- HTTPS (Let's Encrypt)
+
+### Application
+
+- Flask
+
+- Gunicorn
+
+- Nginx Reverse Proxy
+
+### Monitoring
+
 - CloudWatch Logs
+
 - CloudWatch Metrics
+
+- CloudWatch Dashboard
+
+- Metric Filters
+
+- Custom Metrics
+
 - CloudWatch Alarms
-- SNS Email Notifications
-- Systems Manager Run Command
-- EventBridge Automation
+
+### Operations
+
+- SNS Email Alerts
+
+- Systems Manager
+
+- Fleet Manager
+
+- Session Manager
+
+- Run Command
+
+### Reliability
+
+- Automated Nightly Backups
+
+- Disaster Recovery Documentation
+
 - Self-Healing Infrastructure
 
 ---
 
-# Production Features
+## 🚨 Example Production Incident
 
-✅ Production deployment on Amazon EC2
+### Failure
 
-✅ Nginx reverse proxy
+Gunicorn unexpectedly stopped.
 
-✅ Gunicorn application server
+### Detection
 
-✅ HTTPS with Let’s Encrypt
+CloudWatch Metric Filter detected HTTP 502 responses.
 
-✅ Health endpoint monitoring
+### Alerting
 
-✅ Secure S3 uploads using IAM Roles
+CloudWatch Alarm entered **ALARM** state.
 
-✅ Centralized CloudWatch logging
+SNS immediately sent an email notification.
 
-✅ Custom memory & disk metrics
+### Automated Recovery
 
-✅ CloudWatch operational dashboard
+EventBridge triggered Systems Manager.
 
-✅ CloudWatch alarms
+Systems Manager executed:
 
-✅ Amazon SNS email notifications
+```bash
 
-✅ Incident simulation & validation
+sudo systemctl restart gunicorn
 
-## Completed Engineering Tickets
-
-| Ticket | Description | Status |
-|---------|-------------|--------|
-| ✅ 001 | EC2 & SSH | Complete |
-| ✅ 002 | Python Environment | Complete |
-| ✅ 003 | Flask Deployment | Complete |
-| ✅ 004 | Nginx | Complete |
-| ✅ 005 | Health Checks | Complete |
-| ✅ 006 | Log Analysis | Complete |
-| ✅ 007 | HTTPS with Let's Encrypt | Complete |
-| ✅ 008 | Production Health Checks | Complete |
-| ✅ 009 | Incident Response | Complete |
-| ✅ 010 | Configure IAM permissions | Complete |
-| ✅ 011 | Implement CloudWatch visibility | Complete |
-| ✅ 012 | Dashboards | Complete |
-| ✅ 013 | Alarms & SNS | Complete |
-
----
-
-# Repository Structure
-
-```text
-project-atlas/
-│
-├── docs/
-│   ├── playbook/
-│   ├── incidents/
-│   └── runbooks/
-│
-├── architecture/
-│
-├── screenshots/
-│
-├── app/
-│
-└── README.md
 ```
+
+### Result
+
+The application recovered automatically without SSH access.
+
 ---
 
-# 🎯 Skills Demonstrated
+## 📚 Engineering Playbook
 
-Cloud Engineering
+Every implementation is documented with:
 
-* AWS EC2
-* Amazon S3
-* IAM Roles
-* CloudWatch
-* SNS
+- Objectives
 
-Linux Administration
+- Architecture
 
-* Ubuntu
-* SSH
-* systemd
-* journalctl
+- Commands Used
 
-Site Reliability Engineering
+- Validation
 
-* Monitoring
-* Alerting
-* Incident Response
-* Root Cause Analysis
-* Operational Validation
+- Lessons Learned
 
-Networking
+- Operational Takeaways
 
-* Nginx
-* HTTPS
-* DNS
-* Reverse Proxy
+- Incident Documentation
 
-Software Engineering
+- Screenshots
 
-* Flask
-* Python
-* Git
-* GitHub
+Current completed tickets:
 
-# 🛣 Roadmap
+- ✅ Ticket 001 – EC2 Deployment
 
-✅ Completed
+- ✅ Ticket 002 – Python Environment
 
-* Production Deployment
-* HTTPS
-* IAM Roles
-* S3 Integration
-* CloudWatch Logs
-* Metrics
-* Dashboards
-* Alerts
-* SNS Notifications
+- ✅ Ticket 003 – Gunicorn
 
-🚧 In Progress
+- ✅ Ticket 004 – Nginx
 
-* Terraform Infrastructure as Code
-* CI/CD with GitHub Actions
-* Load Balancer
-* Auto Scaling
-* Docker
-* Amazon ECS
+- ✅ Ticket 005 – Health Checks
 
-Upcoming
+- ✅ Ticket 006 – Log Analysis
 
-⬜ Infrastructure as Code (Terraform)
-⬜ CI/CD
-⬜ Docker
-⬜ ECS
+- ✅ Ticket 007 – HTTPS
 
+- ✅ Ticket 008 – Production Health Checks
+
+- ✅ Ticket 009 – Incident Response
+
+- ✅ Ticket 010 – S3 Uploads
+
+- ✅ Ticket 011 – CloudWatch
+
+- ✅ Ticket 012 – CloudWatch Dashboard
+
+- ✅ Ticket 013 – CloudWatch Alarms & SNS
+
+- ✅ Ticket 014 – Automated Backups
+
+- ✅ Ticket 015 – Systems Manager
+
+- ✅ Ticket 017 – CloudWatch Metric Filters
+
+- ✅ Ticket 018 – Self-Healing Infrastructure
+
+---
+
+## 🛠️ Technologies
+
+AWS
+
+- EC2
+
+- IAM
+
+- S3
+
+- CloudWatch
+
+- SNS
+
+- Systems Manager
+
+- EventBridge
+
+Linux
+
+- Ubuntu
+
+- Bash
+
+- Cron
+
+Application
+
+- Flask
+
+- Gunicorn
+
+- Nginx
+
+---
+
+## 🚀 Roadmap
+
+### Completed
+
+- EC2 Deployment
+
+- HTTPS
+
+- CloudWatch Monitoring
+
+- Systems Manager
+
+- Automated Backups
+
+- Self-Healing Infrastructure
+
+### Coming Next
+
+- Terraform (Infrastructure as Code)
+
+- Docker
+
+- GitHub Actions CI/CD
+
+- Application Load Balancer
+
+- Auto Scaling
+
+- Multi-AZ Deployment
+
+- Kubernetes
+
+- Chaos Engineering
+
+---
+
+## 👨‍💻 Author
+
+**Francis Mallari**
+
+Cloud Engineer / Site Reliability Engineer Portfolio Project
 ---
 
 📫 Connect
