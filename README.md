@@ -1,6 +1,6 @@
 # Project Atlas
 
-Hi, I’m Francis, a software engineer transitioning into Cloud Engineering and Site Reliability Engineering. Project Atlas is a production-inspired Cloud Engineering and Site Reliability Engineering portfolio project documenting the deployment, operation, monitoring, and continuous improvement of a cloud-hosted web application on AWS.
+Project Atlas is a production-inspired Cloud Engineering and Site Reliability Engineering portfolio project documenting the deployment, operation, monitoring, and continuous improvement of a cloud-hosted web application on AWS.
 
 The project follows an engineering playbook approach where each implementation is documented as an individual ticket, validated through testing, and supported with operational evidence.
 
@@ -55,45 +55,58 @@ Repository: https://github.com/fmallari/project-atlas
 
 ## 🌟 Portfolio Highlights
 
-- Provisioned cloud infrastructure on AWS EC2
-- Deployed a production-style Flask application
-- Configured Gunicorn with systemd
-- Implemented Nginx as a reverse proxy
-- Performed structured incident investigations using Linux logs
-- Built and validated application health checks
-- Documented engineering tickets, runbooks, and operational lessons
-                         Internet
-                              │
-                           HTTPS
-                              │
-                     francismallari.dev
-                              │
-                              ▼
-                    Nginx Reverse Proxy
-                              │
-                              ▼
-                    Gunicorn Application Server
-                              │
-                              ▼
-                      Flask Web Application
-                       │                  │
-                       ▼                  ▼
-                 Amazon S3         CloudWatch Logs
-                                          │
-                                          ▼
-                                CloudWatch Metrics
-                                          │
-                                          ▼
-                                 CloudWatch Dashboard
-                                          │
-                                          ▼
-                                 CloudWatch Alarms
-                                          │
-                                          ▼
-                                      Amazon SNS
-                                          │
-                                          ▼
-                                 Email Notifications
+## Highlights
+
+- Built and deployed a production-style Flask application on AWS EC2
+- Configured Nginx, Gunicorn, HTTPS, IAM Roles, and S3 integration
+- Implemented centralized logging with Amazon CloudWatch
+- Created custom metrics using CloudWatch Metric Filters
+- Built automated alerting using SNS
+- Automated incident remediation using EventBridge and Systems Manager
+- Designed and tested a self-healing infrastructure workflow
+
+## Architecture
+
+Internet
+     │
+     ▼
+ Route53 / DNS
+     │
+     ▼
+ HTTPS (Let's Encrypt)
+     │
+     ▼
+ Nginx
+     │
+     ▼
+ Gunicorn
+     │
+     ▼
+ Flask Application
+ 
+
+ ### Monitoring Pipeline 
+ 
+
+ CloudWatch Logs
+      │
+      ▼
+ Metric Filter (HTTP 502)
+      │
+      ▼
+ CloudWatch Alarm
+      │
+      ▼
+ SNS Email Notification
+      │
+      ▼
+ EventBridge
+      │
+      ▼
+ Systems Manager Run Command
+      │
+      ▼
+ Restart Gunicorn
 
 ---
 
@@ -114,6 +127,25 @@ Alerting | CloudWatch Alarms, Amazon SNS
 Linux | Ubuntu, systemd, SSH
 
 Operations | Incident Response, Health Checks, Monitoring
+
+---
+
+## ✅ Current Capabilities
+
+- AWS EC2 Ubuntu Server
+- Nginx Reverse Proxy
+- Gunicorn Application Server
+- Flask Web Application
+- HTTPS with Let's Encrypt
+- IAM Roles
+- S3 File Uploads
+- CloudWatch Logs
+- CloudWatch Metrics
+- CloudWatch Alarms
+- SNS Email Notifications
+- Systems Manager Run Command
+- EventBridge Automation
+- Self-Healing Infrastructure
 
 ---
 
@@ -238,11 +270,6 @@ Software Engineering
 
 🚧 In Progress
 
-* Automated Backups
-* Disaster Recovery
-
-🔜 Planned
-
 * Terraform Infrastructure as Code
 * CI/CD with GitHub Actions
 * Load Balancer
@@ -252,8 +279,6 @@ Software Engineering
 
 Upcoming
 
-⬜ Automated Backups
-⬜ Disaster Recovery
 ⬜ Infrastructure as Code (Terraform)
 ⬜ CI/CD
 ⬜ Docker
