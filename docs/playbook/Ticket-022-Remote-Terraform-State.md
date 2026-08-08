@@ -156,8 +156,8 @@ Ticket 022 was successful when:
 
 Recommended screenshots:
 
-1. `screenshots/Ticket-022/01-state-bucket-created.png`
-2. `screenshots/Ticket-022/02-versioning-enabled.png`
+1. `screenshots/Ticket-022/state-bucket-created.png`
+2. `screenshots/Ticket-022/versioning-enabled.png`
 3. `screenshots/Ticket-022/public-access-blocked.png`
 4. `screenshots/Ticket-022/backend-configuration.png`
 5. `screenshots/Ticket-022/state-migration-success.png`
