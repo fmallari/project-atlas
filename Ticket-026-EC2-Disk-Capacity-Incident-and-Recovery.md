@@ -162,6 +162,10 @@ Application
 5. Recovery should include application-level validation, not only
    filesystem validation.
 
+6. Monitoring infrastructure can itself be affected by the failure it
+   is intended to observe. Disk-capacity monitoring should therefore
+   alert before filesystem exhaustion begins disrupting telemetry.
+
 ## Follow-Up Actions
 
 - Add disk utilization monitoring to CloudWatch.
@@ -196,3 +200,63 @@ log while the root filesystem was exhausted.
 This demonstrated that the incident affected not only application
 deployment operations but also the observability layer responsible for
 shipping application and Nginx logs to CloudWatch.
+
+## Preventive Action — Disk Capacity Alerting
+
+Post-incident review confirmed that Project Atlas was already
+collecting `disk_used_percent` through the CloudWatch Agent.
+
+The observability gap was therefore not metric collection, but the
+absence of proactive alerting.
+
+A CloudWatch alarm was created with the following configuration:
+
+- Namespace: `ProjectAtlas`
+- Metric: `disk_used_percent`
+- Filesystem: `/`
+- Statistic: Average
+- Evaluation period: 1 minute
+- Threshold: > 85%
+- Evaluation: 3 of 3 datapoints
+- Notification target: `project-atlas-alerts`
+- Alarm: `ProjectAtlas-High-Disk-Usage`
+
+This provides early warning of filesystem capacity pressure before
+the instance reaches full disk exhaustion.
+
+### Reliability Improvement
+
+Before:
+
+Disk usage → 100% → filesystem writes fail → manual detection
+
+After:
+
+Disk usage → 85% threshold → CloudWatch alarm → notification →
+operator intervention before exhaustion
+
+## Final Outcome
+
+The incident was successfully resolved after approximately 1.4 GB of
+disk capacity was reclaimed from unnecessary VS Code Remote Server
+artifacts.
+
+Post-recovery validation confirmed:
+
+- Root filesystem utilization reduced from 100% to approximately 80%
+- Gunicorn returned to a healthy running state
+- Local application endpoint returned HTTP 200
+- `/health` returned a healthy application status
+- Public HTTPS traffic through Nginx returned HTTP 200
+- CloudWatch Agent log collection resumed
+- `francismallari.dev` successfully served the updated portfolio homepage
+
+A post-incident review determined that disk utilization telemetry was
+already being collected through the CloudWatch Agent, but no proactive
+alarm existed.
+
+`ProjectAtlas-High-Disk-Usage` was therefore created to alert when root
+filesystem utilization exceeds 85% for 2 of 3 one-minute datapoints.
+
+The incident progressed Project Atlas from reactive disk-capacity
+recovery to proactive capacity monitoring and alerting.
