@@ -10,3 +10,16 @@ resource "aws_subnet" "project_atlas" {
   availability_zone       = "us-east-2c"
   map_public_ip_on_launch = true
 }
+
+resource "aws_internet_gateway" "project_atlas" {
+  vpc_id = aws_vpc.project_atlas.id
+}
+
+resource "aws_route_table" "project_atlas" {
+  vpc_id = aws_vpc.project_atlas.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.project_atlas.id
+  }
+}
