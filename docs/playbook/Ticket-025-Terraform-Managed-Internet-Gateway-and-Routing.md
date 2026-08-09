@@ -155,15 +155,28 @@ Result:
 ```text
 No changes. Your infrastructure matches the configuration.
 ```
-
 ## Evidence
-1. `screenshots/Ticket-025/existing-internet-gateway.png`
-2. `screenshots/Ticket-025/igw-pre-import-plan.png`
-3. `screenshots/Ticket-025/igw-import-success.png`
-4. `screenshots/Ticket-025/existing-main-route-table.png`
-5. `screenshots/Ticket-025/import-before-resource-error.png`
-6. `screenshots/Ticket-025/route-table-import-success.png`
-7. `screenshots/Ticket-025/network-routing-no-change-plan.png`
+
+### 1. Existing Internet Gateway
+![Existing Internet Gateway](../../screenshots/Ticket-025/existing-internet-gateway.png)
+
+### 2. Internet Gateway Pre-Import Plan
+![IGW Pre-Import Plan](../../screenshots/Ticket-025/igw-pre-import-plan.png)
+
+### 3. Internet Gateway Import Success
+![IGW Import Success](../../screenshots/Ticket-025/igw-import-success.png)
+
+### 4. Existing Main Route Table
+![Existing Main Route Table](../../screenshots/Ticket-025/existing-main-route-table.png)
+
+### 5. Import Before Resource Error
+![Import Before Resource Error](../../screenshots/Ticket-025/import-before-resource-error.png)
+
+### 6. Route Table Import Success
+![Route Table Import Success](../../screenshots/Ticket-025/route-table-import-success.png)
+
+### 7. Network Routing No-Change Plan
+![Network Routing No-Change Plan](../../screenshots/Ticket-025/network-routing-no-change-plan.png)
 
 ## Key Takeaways
 - A public EC2 instance depends on more than a public IP; it needs a valid route through a route table and Internet Gateway.
