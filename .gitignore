@@ -12,6 +12,7 @@ __pycache__/
 __pycache__/
 *.pyc
 
+<<<<<<< HEAD
 # Terraform
 **/.terraform/*
 *.tfstate
@@ -24,3 +25,10 @@ override.tf
 override.tf.json
 *_override.tf
 *_override.tf.json
+=======
+*.swp
+*.swo
+*~
+__pycache__/
+*.pyc
+>>>>>>> 4ab6e99 (feat: deploy Cloud SRE portfolio homepage and document disk incident)

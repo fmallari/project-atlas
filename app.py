@@ -25,11 +25,7 @@ def allowed_file(filename):
 
 @app.route("/")
 def home():
-    return """
-    <h1>🚀 Hello from AWS!</h1>
-    <p>This application is running on my EC2 server.</p>
-    <p>Built by Francis during my Cloud Engineering roadmap.</p>
-    """
+    return render_template("index.html")
 
 @app.route("/health", methods=["GET"])
 def health():
