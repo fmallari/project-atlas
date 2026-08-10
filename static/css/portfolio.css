@@ -1,0 +1,280 @@
+:root {
+  --bg: #171a17;
+  --panel: #20251f;
+  --text: #f0f1eb;
+  --muted: #a7ada3;
+  --sage: #b9c7a8;
+  --border: rgba(240, 241, 235, 0.12);
+  --max: 1120px;
+}
+
+/* Base */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: min(calc(100% - 40px), var(--max));
+  margin: auto;
+}
+
+/* Header */
+
+header {
+  border-bottom: 1px solid var(--border);
+}
+
+nav {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: monospace;
+  font-weight: 700;
+}
+
+.logo span,
+.eyebrow,
+.section-title {
+  color: var(--sage);
+}
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* Hero */
+
+.hero {
+  padding: 110px 0 92px;
+  display: grid;
+  grid-template-columns: 1.5fr 0.6fr;
+  gap: 70px;
+  align-items: end;
+}
+
+.eyebrow,
+.section-title {
+  font-family: monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 18px 0 0;
+  font-size: clamp(54px, 8vw, 96px);
+  line-height: 0.94;
+  letter-spacing: -0.065em;
+  font-weight: 500;
+}
+
+h1 em {
+  color: var(--sage);
+  font-style: normal;
+}
+
+.lede {
+  max-width: 700px;
+  margin-top: 30px;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.75;
+}
+
+/* Buttons */
+
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 34px;
+}
+
+.btn {
+  border: 1px solid var(--border);
+  padding: 14px 18px;
+  font-size: 14px;
+}
+
+.btn.primary {
+  background: var(--sage);
+  color: var(--bg);
+  border-color: var(--sage);
+}
+
+/* Current Project */
+
+.status {
+  background: var(--sage);
+  color: var(--bg);
+  min-height: 270px;
+  padding: 24px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.status small {
+  font-family: monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.status h2 {
+  font-size: 30px;
+  margin: 0;
+}
+
+.status p {
+  font-size: 13px;
+  opacity: 0.72;
+}
+
+/* Technology Strip */
+
+.strip {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 0;
+
+  color: var(--muted);
+  font-family: monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.strip .container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* Sections */
+
+section {
+  padding: 96px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 0.42fr 1.2fr;
+  gap: 70px;
+}
+
+.content h2 {
+  margin: 0;
+  font-size: clamp(38px, 5vw, 62px);
+  line-height: 1.03;
+  letter-spacing: -0.05em;
+  font-weight: 500;
+}
+
+.content p {
+  color: var(--muted);
+  max-width: 720px;
+  line-height: 1.75;
+}
+
+/* Project Meta */
+
+.meta {
+  margin: 34px 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--border);
+}
+
+.meta div {
+  padding: 20px;
+  border-right: 1px solid var(--border);
+}
+
+.meta div:last-child {
+  border-right: 0;
+}
+
+.meta small {
+  color: var(--sage);
+  font-family: monospace;
+  text-transform: uppercase;
+}
+
+.meta strong {
+  display: block;
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+/* Footer */
+
+footer {
+  padding: 28px 0 38px;
+  color: #72796f;
+  font-family: monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* Mobile */
+
+@media (max-width: 780px) {
+  .hero,
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    gap: 40px;
+    padding-top: 76px;
+  }
+
+  .meta {
+    grid-template-columns: 1fr;
+  }
+
+  .meta div {
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-links {
+    gap: 14px;
+  }
+
+  .nav-links a:first-child {
+    display: none;
+  }
+}
