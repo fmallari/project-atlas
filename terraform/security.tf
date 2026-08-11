@@ -14,7 +14,7 @@ resource "aws_security_group" "project_atlas" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["172.116.28.173/32"]
+    cidr_blocks = [var.ssh_allowed_cidr]
   }
 
   ingress {
