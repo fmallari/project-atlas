@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Selected Project Atlas engineering evidence covering infrastructure as code, observability, and incident response.">
+  <title>Project Atlas Evidence | Francis Mallari</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/portfolio.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/evidence.css') }}">
+</head>
+<body>
+
+<header>
+  <nav class="container">
+    <a class="logo" href="/">FM<span>.</span></a>
+    <div class="nav-links">
+      <a href="/#atlas">Project Atlas</a>
+      <a class="active-link" href="/evidence">Evidence</a>
+      <a href="/#about">About</a>
+      <a href="https://github.com/fmallari" target="_blank" rel="noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/fmallari/" target="_blank" rel="noreferrer">LinkedIn</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="evidence-hero">
+    <div class="container">
+      <p class="eyebrow">Project Atlas</p>
+      <h1 class="evidence-title">Evidence of engineering work.</h1>
+      <p class="evidence-lede">
+        A few highlights from Project Atlas that demonstrate infrastructure as code,
+        observability, and incident response in action.
+      </p>
+      <a class="btn evidence-repo-button"
+         href="https://github.com/fmallari/project-atlas"
+         target="_blank" rel="noreferrer">
+        View Project Atlas on GitHub ↗
+      </a>
+    </div>
+  </section>
+
+  <section class="evidence-section">
+    <div class="container evidence-card">
+      <div class="evidence-image-wrap">
+        <img
+          src="{{ url_for('static', filename='images/atlas/terraform-infrastructure.png') }}"
+          alt="Terraform infrastructure provisioning evidence from Project Atlas"
+          class="evidence-image">
+      </div>
+      <div class="evidence-copy">
+        <span class="evidence-number">01</span>
+        <h2>Infrastructure as Code</h2>
+        <p>
+          Provisioned and evolved AWS infrastructure using Terraform.
+          Networking, routing, EC2 resources, IAM roles, and supporting
+          services are defined and managed as code.
+        </p>
+        <div class="evidence-tags">
+          <span>Terraform</span><span>AWS</span><span>VPC</span><span>EC2</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="evidence-section">
+    <div class="container evidence-card">
+      <div class="evidence-image-wrap">
+        <img
+          src="{{ url_for('static', filename='images/atlas/cloudwatch-observability.png') }}"
+          alt="CloudWatch monitoring and alerting evidence from Project Atlas"
+          class="evidence-image">
+      </div>
+      <div class="evidence-copy">
+        <span class="evidence-number">02</span>
+        <h2>Observability &amp; Alerting</h2>
+        <p>
+          CloudWatch dashboards, metrics, centralized logs, and proactive
+          alarms provide visibility into infrastructure health and help
+          surface problems before they impact service.
+        </p>
+        <div class="evidence-tags">
+          <span>CloudWatch</span><span>Logs</span><span>Alarms</span><span>SNS</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="evidence-section">
+    <div class="container evidence-card">
+      <div class="evidence-image-wrap">
+        <img
+          src="{{ url_for('static', filename='images/atlas/incident-026-disk-recovery.png') }}"
+          alt="Project Atlas EC2 disk capacity incident and recovery evidence"
+          class="evidence-image">
+      </div>
+      <div class="evidence-copy">
+        <span class="evidence-number">03</span>
+        <h2>Incident Response</h2>
+        <p>
+          EC2 disk capacity reached 100% and began causing filesystem write failures.
+          I investigated the host, recovered approximately 1.4 GB of space, restored
+          service health, and implemented an 85% disk-utilization alarm to reduce recurrence risk.
+        </p>
+        <div class="evidence-tags">
+          <span>Linux</span><span>Troubleshooting</span><span>Recovery</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="evidence-cta-section">
+    <div class="container evidence-cta">
+      <div>
+        <p class="eyebrow">Want the full story?</p>
+        <h2>Every ticket, runbook, and incident report lives in the repository.</h2>
+      </div>
+      <a class="btn primary"
+         href="https://github.com/fmallari/project-atlas"
+         target="_blank" rel="noreferrer">
+        Explore the repository ↗
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer">
+    <span>Francis Mallari</span>
+    <span>Cloud Engineering · Reliability · Automation</span>
+  </div>
+</footer>
+
+</body>
+</html>
