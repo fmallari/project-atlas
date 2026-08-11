@@ -26,6 +26,8 @@ Flask Application
     |
     +-- /health
 
+````
+
 ## Implementation
 
 Created a Dockerfile using a lightweight Python base image.
@@ -48,23 +50,25 @@ The application was then started as a container:
 ```bash 
 docker run --rm -p 8000:8000 project-atlas
 
+```
+
 ##Validation
 
 Verified that the container was running:
 
 ```bash 
 docker ps
-
+````
 Verified the Docker image: 
 
 ```bash
 docker images | grep project-atlas
-
+````
 Tested application: 
 
 ```bash
 curl http://localhost:8000/
-
+````
 Tested the health endpoint: 
 ```bash
 curl http://localhost:8000/health
@@ -76,8 +80,7 @@ Returned:
   "status": "healthy",
   "version": "1.0.0"
 }
-
-##Evidence
+````
 ## Evidence
 
 ### Docker Image Build
@@ -92,7 +95,7 @@ Returned:
 
 ![Gunicorn container logs](screenshots/Ticket-027/container-gunicorn-logs.png)
 
-##Key Takeaways 
+## Key Takeaways 
 
 * Containerized a Python/Flask application with Docker.
 * Built a reproducible application runtime using a Dockerfile.
