@@ -247,11 +247,11 @@ Success
 
 ### GitHub Actions CI Success
 
-![GitHub Actions CI success](screenshots/Ticket-029/github-actions-ci-success.png)
+![GitHub Actions CI success](../../screenshots/Ticket-029/github-actions-ci-success.png)
 
 ### Test and Build Job Steps
 
-![GitHub Actions test and build steps](screenshots/Ticket-029/github-actions-test-build-steps.png)
+![GitHub Actions test and build steps](../../screenshots/Ticket-029/github-actions-test-build-steps.png)
 
 ---
 
