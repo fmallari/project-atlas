@@ -1,366 +1,493 @@
 # Project Atlas
 
-Project Atlas is a production-inspired Cloud Engineering and Site Reliability Engineering portfolio project documenting the deployment, operation, monitoring, and continuous improvement of a cloud-hosted web application on AWS.
+> A production-inspired Cloud Engineering and Site Reliability Engineering environment built on AWS to practice infrastructure automation, observability, incident response, containerization, and operational reliability.
 
-The project follows an engineering playbook approach where each implementation is documented as an individual ticket, validated through testing, and supported with operational evidence.
+Project Atlas is a hands-on Cloud Engineering / Site Reliability Engineering portfolio project documenting the evolution of a cloud-hosted application from a manually operated EC2 workload into an increasingly automated, observable, and reproducible cloud platform.
 
-Every completed ticket includes:
+Rather than treating the project as a collection of isolated tutorials, Project Atlas follows an **engineering playbook model**.
 
-- Business objective
-- Architecture
-- Implementation
-- Validation
-- Incident investigation
-- Operational lessons
-- Runbook updates
-
----
-
-## 🎯 Project Goals
-
-- Build and operate a production-style cloud environment
-
-- Learn AWS services through hands-on implementation
-
-- Practice Site Reliability Engineering (SRE) workflows
-
-- Document every change as an engineering playbook
-
-- Simulate real-world incidents and recovery procedures
+Infrastructure changes, incidents, reliability improvements, and architectural decisions are documented as individual engineering tickets with implementation details, validation steps, operational lessons, and supporting evidence.
 
 ---
 
 ## 🏗️ Architecture
 
 ```text
+                         Internet
+                            │
+                            ▼
+                      HTTPS / TLS
+                            │
+                            ▼
+                          Nginx
+                            │
+                            ▼
+                         Gunicorn
+                            │
+                            ▼
+                    Flask Application
+                       │          │
+                       ▼          ▼
+                      S3      Health Checks
 
-                    Internet
 
-                        │
+              Infrastructure Management
+                       │
+                       ▼
+                    Terraform
+                       │
+          ┌────────────┼─────────────┐
+          ▼            ▼             ▼
+         VPC         Subnet     Security Group
+          │
+          ├── Internet Gateway
+          │
+          ├── Route Table
+          │
+          ├── EC2
+          │
+          └── Amazon ECR
 
-                        ▼
 
-                  HTTPS (TLS)
-
-                        │
-
-                        ▼
-
-                     Nginx
-
-                        │
-
-                        ▼
-
-                    Gunicorn
-
-                        │
-
-                        ▼
-
-                 Flask Application
-
-                        │
-
-                        ▼
-
-                       S3
-
+                 Container Workflow
+                       │
+                       ▼
+                  Docker Build
+                       │
+                       ▼
+             project-atlas:latest
+                       │
+                       ▼
+                  Amazon ECR
 ```
+
+Project Atlas currently combines traditional EC2-based application operations with Infrastructure as Code and containerization as the platform evolves toward automated deployment.
 
 ---
 
-## 📈 Observability Pipeline
+## 🔭 Observability & Reliability
+
+Project Atlas includes a monitoring and automated recovery workflow built around Amazon CloudWatch.
 
 ```text
-
-                Nginx Logs
-
-                     │
-
-                     ▼
-
-             CloudWatch Logs
-
-                     │
-
-                     ▼
-
-              Metric Filter
-
-                     │
-
-                     ▼
-
-        Nginx502Count Metric
-
-                     │
-
-                     ▼
-
-            CloudWatch Alarm
-
-                     │
-
-             ┌───────────────┐
-
-             ▼               ▼
-
-        SNS Notification   EventBridge
-
-                                │
-
-                                ▼
-
-                      Systems Manager
-
-                                │
-
-                                ▼
-
-                   Restart Gunicorn
-
-                                │
-
-                                ▼
-
-                     Application Healthy
-
+Nginx / Application Logs
+          │
+          ▼
+    CloudWatch Logs
+          │
+          ▼
+     Metric Filter
+          │
+          ▼
+   Custom 502 Metric
+          │
+          ▼
+   CloudWatch Alarm
+          │
+     ┌────┴────┐
+     ▼         ▼
+    SNS    EventBridge
+               │
+               ▼
+        Systems Manager
+               │
+               ▼
+        Restart Gunicorn
+               │
+               ▼
+      Application Healthy
 ```
+
+This allows application failures to move through a production-style lifecycle:
+
+**Detect → Alert → Respond → Recover → Validate**
 
 ---
 
-## ✅ Skills Demonstrated
+# 🧰 Skills Demonstrated
 
-### Infrastructure
+## Infrastructure & AWS
 
-- AWS EC2 (Ubuntu)
-
-- IAM Roles
-
+- Amazon EC2
+- VPC Networking
+- Subnets
+- Internet Gateways
+- Route Tables
 - Security Groups
-
+- IAM Roles
 - Amazon S3
+- Amazon ECR
+- DNS
+- HTTPS / TLS
 
-- Route53 / DNS
+## Infrastructure as Code
 
-- HTTPS (Let's Encrypt)
+- Terraform
+- Terraform State
+- Terraform Resource Imports
+- Variables
+- Outputs
+- Infrastructure Validation
+- Existing Infrastructure Adoption
 
-### Application
+## Containers
 
+- Docker
+- Dockerfiles
+- Container Image Builds
+- Container Runtime
+- Port Publishing
+- Container Logging
+- Amazon ECR Authentication
+- Image Tagging
+- Container Registry Publishing
+
+## Application & Linux
+
+- Python
 - Flask
-
 - Gunicorn
+- Nginx
+- Ubuntu Linux
+- Bash
+- systemd
+- Cron
 
-- Nginx Reverse Proxy
-
-### Monitoring
+## Observability
 
 - CloudWatch Logs
-
 - CloudWatch Metrics
-
-- CloudWatch Dashboard
-
+- CloudWatch Dashboards
 - Metric Filters
-
 - Custom Metrics
-
 - CloudWatch Alarms
+- Health Checks
 
-### Operations
+## Operations & Reliability
 
-- SNS Email Alerts
-
-- Systems Manager
-
-- Fleet Manager
-
+- Incident Investigation
+- Log Analysis
+- SNS Alerting
+- AWS Systems Manager
 - Session Manager
-
 - Run Command
-
-### Reliability
-
-- Automated Nightly Backups
-
-- Disaster Recovery Documentation
-
+- Automated Backups
+- Disaster Recovery
 - Self-Healing Infrastructure
 
 ---
 
-## 🚨 Example Production Incident
+# 🧱 Infrastructure as Code
 
-### Failure
+A major phase of Project Atlas involved transitioning existing AWS infrastructure under **Terraform management**.
 
-Gunicorn unexpectedly stopped.
+Instead of rebuilding the environment from scratch, existing AWS resources were identified, modeled in Terraform configuration, and imported into Terraform state.
+
+Terraform currently manages infrastructure including:
+
+```text
+VPC
+│
+├── Subnet
+├── Internet Gateway
+├── Route Table
+├── Security Group
+├── EC2
+└── Amazon ECR
+```
+
+Infrastructure changes are validated using:
+
+```bash
+terraform fmt
+terraform validate
+terraform plan
+```
+
+A clean Terraform plan verifies that the declared configuration matches the deployed AWS infrastructure.
+
+```text
+No changes. Your infrastructure matches the configuration.
+```
+
+This phase demonstrates an important real-world Infrastructure as Code workflow:
+
+**Discover → Model → Import → Validate → Manage**
+
+---
+
+# 🐳 Containerization
+
+Project Atlas has also begun transitioning from a host-dependent application deployment toward a portable containerized runtime.
+
+The Flask application is packaged into a Docker image containing:
+
+```text
+Python Runtime
+      │
+      ▼
+Application Dependencies
+      │
+      ▼
+Project Atlas Flask App
+      │
+      ▼
+Gunicorn
+      │
+      ▼
+Port 8000
+```
+
+The image can be built locally with:
+
+```bash
+docker build -t project-atlas .
+```
+
+and executed with:
+
+```bash
+docker run --rm -p 8000:8000 project-atlas
+```
+
+Application health can then be verified independently of the EC2 host:
+
+```bash
+curl http://localhost:8000/health
+```
+
+Example response:
+
+```json
+{
+  "service": "project-atlas",
+  "status": "healthy",
+  "version": "1.0.0"
+}
+```
+
+---
+
+# 📦 Container Registry — Amazon ECR
+
+Terraform provisions a private **Amazon Elastic Container Registry (ECR)** repository for Project Atlas.
+
+The Docker image is:
+
+```text
+Built
+  ↓
+Validated
+  ↓
+Tagged
+  ↓
+Authenticated with AWS ECR
+  ↓
+Pushed
+  ↓
+Verified in Amazon ECR
+```
+
+This establishes a centralized cloud artifact repository that can support future automated deployment and CI/CD workflows.
+
+---
+
+# 🚨 Example Reliability Incident
+
+One Project Atlas exercise simulated an application failure where Gunicorn unexpectedly stopped.
 
 ### Detection
 
-CloudWatch Metric Filter detected HTTP 502 responses.
+CloudWatch detected HTTP `502` responses through a custom metric filter.
 
 ### Alerting
 
-CloudWatch Alarm entered **ALARM** state.
-
-SNS immediately sent an email notification.
+A CloudWatch Alarm transitioned into the `ALARM` state and triggered an SNS notification.
 
 ### Automated Recovery
 
-EventBridge triggered Systems Manager.
-
-Systems Manager executed:
+EventBridge initiated an AWS Systems Manager action that executed:
 
 ```bash
-
 sudo systemctl restart gunicorn
-
 ```
+
+### Validation
+
+Application health was checked after remediation to confirm service recovery.
 
 ### Result
 
-The application recovered automatically without SSH access.
+The application recovered without requiring direct SSH intervention.
+
+This exercise demonstrated:
+
+```text
+Failure
+   ↓
+Detection
+   ↓
+Alerting
+   ↓
+Automated Remediation
+   ↓
+Health Validation
+```
 
 ---
 
-## 📚 Engineering Playbook
+# 📚 Engineering Playbook
 
-Every implementation is documented with:
+Each Project Atlas implementation is documented as an engineering ticket.
 
-- Objectives
+Tickets include:
 
+- Objective
 - Architecture
-
-- Commands Used
-
+- Implementation
+- Commands
 - Validation
-
+- Operational Evidence
 - Lessons Learned
+- Reliability Considerations
 
-- Operational Takeaways
+### Foundation & Application Operations
 
-- Incident Documentation
+- ✅ Ticket 001 — EC2 Deployment
+- ✅ Ticket 002 — Python Environment
+- ✅ Ticket 003 — Gunicorn
+- ✅ Ticket 004 — Nginx
+- ✅ Ticket 005 — Health Checks
+- ✅ Ticket 006 — Log Analysis
+- ✅ Ticket 007 — HTTPS
+- ✅ Ticket 008 — Production Health Checks
+- ✅ Ticket 009 — Incident Response
+- ✅ Ticket 010 — S3 Uploads
 
-- Screenshots
+### Observability & Reliability
 
-Current completed tickets:
+- ✅ Ticket 011 — CloudWatch
+- ✅ Ticket 012 — CloudWatch Dashboard
+- ✅ Ticket 013 — CloudWatch Alarms & SNS
+- ✅ Ticket 014 — Automated Backups
+- ✅ Ticket 015 — Systems Manager
+- ✅ Ticket 017 — CloudWatch Metric Filters
+- ✅ Ticket 018 — Self-Healing Infrastructure
 
-- ✅ Ticket 001 – EC2 Deployment
+### Infrastructure as Code & Containers
 
-- ✅ Ticket 002 – Python Environment
+- ✅ Ticket 025 — Terraform-Managed Internet Gateway & Routing
+- ✅ Ticket 026 — Terraform Variables & Outputs
+- ✅ Ticket 027 — Containerize Project Atlas with Docker
+- ✅ Ticket 028 — Publish Project Atlas Container to Amazon ECR
 
-- ✅ Ticket 003 – Gunicorn
-
-- ✅ Ticket 004 – Nginx
-
-- ✅ Ticket 005 – Health Checks
-
-- ✅ Ticket 006 – Log Analysis
-
-- ✅ Ticket 007 – HTTPS
-
-- ✅ Ticket 008 – Production Health Checks
-
-- ✅ Ticket 009 – Incident Response
-
-- ✅ Ticket 010 – S3 Uploads
-
-- ✅ Ticket 011 – CloudWatch
-
-- ✅ Ticket 012 – CloudWatch Dashboard
-
-- ✅ Ticket 013 – CloudWatch Alarms & SNS
-
-- ✅ Ticket 014 – Automated Backups
-
-- ✅ Ticket 015 – Systems Manager
-
-- ✅ Ticket 017 – CloudWatch Metric Filters
-
-- ✅ Ticket 018 – Self-Healing Infrastructure
+> Additional tickets and operational exercises are documented in [`docs/playbook`](docs/playbook/).
 
 ---
 
-## 🛠️ Technologies
+# 🛠️ Technology Stack
 
-AWS
+| Area | Technologies |
+|---|---|
+| **Cloud** | AWS, EC2, S3, ECR, IAM |
+| **Networking** | VPC, Subnets, Internet Gateway, Route Tables, Security Groups, DNS, HTTPS |
+| **IaC** | Terraform |
+| **Containers** | Docker, Amazon ECR |
+| **Application** | Python, Flask, Gunicorn |
+| **Web** | Nginx |
+| **Observability** | CloudWatch Logs, Metrics, Dashboards, Alarms |
+| **Automation** | EventBridge, Systems Manager, Bash, Cron |
+| **Operations** | Linux, systemd, SSH, AWS CLI |
+| **Version Control** | Git, GitHub |
 
-- EC2
+---
 
-- IAM
+# 🚀 Project Evolution
 
-- S3
+Project Atlas is intentionally being built in stages.
 
-- CloudWatch
-
-- SNS
-
-- Systems Manager
-
-- EventBridge
-
-Linux
-
-- Ubuntu
-
-- Bash
-
-- Cron
-
+```text
 Application
+     ↓
+Linux Operations
+     ↓
+AWS Infrastructure
+     ↓
+Observability
+     ↓
+Incident Response
+     ↓
+Automated Recovery
+     ↓
+Infrastructure as Code
+     ↓
+Docker
+     ↓
+Container Registry
+     ↓
+CI/CD
+     ↓
+Automated Container Deployment
+```
 
-- Flask
+The goal is not simply to deploy an application.
 
-- Gunicorn
-
-- Nginx
+The goal is to understand how **reliable cloud platforms are built, operated, observed, automated, and improved over time.**
 
 ---
 
-## 🚀 Roadmap
+# 🗺️ Roadmap
 
 ### Completed
 
-- EC2 Deployment
+- ✅ AWS EC2 Application Deployment
+- ✅ Nginx + Gunicorn Production Runtime
+- ✅ HTTPS / TLS
+- ✅ S3 Integration
+- ✅ CloudWatch Monitoring
+- ✅ Metrics & Dashboards
+- ✅ CloudWatch Alarms
+- ✅ SNS Alerting
+- ✅ Systems Manager Operations
+- ✅ Automated Backups
+- ✅ Self-Healing Infrastructure
+- ✅ Terraform Infrastructure Management
+- ✅ Terraform Resource Imports
+- ✅ Terraform Variables & Outputs
+- ✅ Docker Containerization
+- ✅ Amazon ECR
+- ✅ Container Image Publishing
 
-- HTTPS
+### Next
 
-- CloudWatch Monitoring
+- 🔄 CI/CD with GitHub Actions
+- 🔄 Automated Docker Builds
+- 🔄 Automated ECR Publishing
+- 🔄 Container Deployment
+- 🔄 Application Load Balancer
+- 🔄 Auto Scaling
+- 🔄 Multi-AZ Architecture
 
-- Systems Manager
-
-- Automated Backups
-
-- Self-Healing Infrastructure
-
-### Coming Next
-
-- Terraform (Infrastructure as Code)
-
-- Docker
-
-- GitHub Actions CI/CD
-
-- Application Load Balancer
-
-- Auto Scaling
-
-- Multi-AZ Deployment
+### Future Exploration
 
 - Kubernetes
-
+- Advanced Observability
+- Infrastructure Testing
 - Chaos Engineering
+- Deployment Strategies
+- Reliability Engineering Exercises
 
 ---
 
-## 👨‍💻 Author
+# 👨‍💻 Author
 
 **Francis Mallari**
 
-Cloud Engineer / Site Reliability Engineer Portfolio Project
----
+Cloud Engineer / Platform Engineer / Site Reliability Engineer
 
-📫 Connect
+Project Atlas is a hands-on engineering portfolio focused on building practical experience operating reliable cloud infrastructure.
 
-If you’d like to further discuss Cloud Engineering, Site Reliability Engineering, or software development, feel free to connect with me via LinkedIn: https://www.linkedin.com/in/fmallari/
+### Connect
+
+LinkedIn:  
+https://www.linkedin.com/in/fmallari/
