@@ -42,3 +42,8 @@ output "project_atlas_route_table_id" {
   description = "Route table ID used by Project Atlas"
   value       = aws_route_table.project_atlas.id
 }
+
+output "project_atlas_ecr_repository_url" {
+  description = "ECR repository URL for Project Atlas"
+  value       = aws_ecr_repository.project_atlas.repository_url
+}
