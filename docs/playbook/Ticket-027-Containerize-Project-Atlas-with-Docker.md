@@ -85,15 +85,15 @@ Returned:
 
 ### Docker Image Build
 
-![Docker build success](screenshots/Ticket-027/docker-build-success.png)
+![Docker build success](../../screenshots/Ticket-027/docker-build-success.png)
 
 ### Container Runtime and Health Check
 
-![Container runtime and health check](screenshots/Ticket-027/container-health-check-and-runtime.png)
+![Container runtime and health check](../../screenshots/Ticket-027/container-health-check-and-runtime.png)
 
 ### Gunicorn Container Logs
 
-![Gunicorn container logs](screenshots/Ticket-027/container-gunicorn-logs.png)
+![Gunicorn container logs](../../screenshots/Ticket-027/container-gunicorn-logs.png)
 
 ## Key Takeaways 
 
