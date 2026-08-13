@@ -8,6 +8,8 @@ Rather than treating the project as a collection of isolated tutorials, Project 
 
 Infrastructure changes, incidents, reliability improvements, and architectural decisions are documented as individual engineering tickets with implementation details, validation steps, operational lessons, and supporting evidence.
 
+Live demo: https://francismallari.dev
+
 ---
 
 ## 🏗️ Architecture
