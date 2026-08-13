@@ -177,13 +177,10 @@ Ticket 024 was successful when:
 
 ## Evidence
 
-Recommended screenshots:
-
-1. `screenshots/Ticket-024/existing-vpc-subnet-discovery.png`
-2. `screenshots/Ticket-024/network-terraform-config.png`
-3. `screenshots/Ticket-024/vpc-subnet-import-success.png`
-4. `screenshots/Ticket-024/network-state-list.png`
-5. `screenshots/Ticket-024/network-no-change-plan.png`
+1. ![Existing VPC Subnet Discovery](../../screenshots/Ticket-024/existing-vpc-subnet-discovery.png)
+2. ![Network Terraform Configuration](../../screenshots/Ticket-024/network-terraform-config.png)
+3. ![VPC Subnet Import Success](../../screenshots/Ticket-024/vpc-subnet-import-success.png)
+4. ![Network State List](../../screenshots/Ticket-024/network-state-list.png)
 
 ## Key Takeaways
 
