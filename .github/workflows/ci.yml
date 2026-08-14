@@ -8,9 +8,16 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+  id-token: write
+
 jobs:
   test-and-build:
     runs-on: ubuntu-latest
+    env:
+      AWS_REGION: us-east-2
+      ECR_REPOSITORY: project-atlas
 
     steps:
       - name: Checkout repository
@@ -31,3 +38,21 @@ jobs:
 
       - name: Build Docker image
         run: docker build -t project-atlas:${{ github.sha }} .
+      
+            - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v5
+        with:
+          role-to-assume: arn:aws:iam::764553891483:role/project-atlas-github-actions
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Tag and push image to ECR
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          docker tag project-atlas:${{ github.sha }} $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
