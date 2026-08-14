@@ -206,21 +206,17 @@ This confirmed that the Project Atlas container image was successfully stored in
 
 ## Evidence
 
-### Terraform ECR Provisioning
-
-![Terraform ECR provisioning](screenshots/Ticket-028/terraform-ecr-provisioning.png)
-
 ### ECR Authentication
 
-![ECR login success](screenshots/Ticket-028/ecr-login-success.png)
+![ECR login success](../../screenshots/Ticket-028/ecr-login-success.png)
 
 ### Docker Image Push
 
-![ECR image push success](screenshots/Ticket-028/ecr-image-push-success.png)
+![ECR image push success](../../screenshots/Ticket-028/ecr-image-push-success.png)
 
 ### ECR Image Verification
 
-![ECR image verification](screenshots/Ticket-028/ecr-image-verification.png)
+![ECR image verification](../../screenshots/Ticket-028/ecr-image-verification.png)
 
 ---
 
