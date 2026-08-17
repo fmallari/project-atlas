@@ -1,4 +1,4 @@
-Ticket 030 — GitHub OIDC and Automated ECR Publishing
+### Ticket 030 — GitHub OIDC and Automated ECR Publishing
 
 Objective
 
@@ -14,7 +14,7 @@ This ticket builds directly on:
 
 ⸻
 
-Architecture
+## Architecture
 
 Developer
     |
@@ -62,7 +62,7 @@ Push Image to ECR
 
 ⸻
 
-Why OIDC
+## Why OIDC
 
 Rather than storing credentials such as:
 
@@ -111,7 +111,7 @@ sts.amazonaws.com
 
 ⸻
 
-GitHub Actions IAM Role
+## GitHub Actions IAM Role
 
 Created an IAM role:
 
@@ -125,7 +125,7 @@ This prevents unrelated GitHub repositories or branches from assuming the Projec
 
 ⸻
 
-Least-Privilege ECR Policy
+## Least-Privilege ECR Policy
 
 Created the inline policy:
 
@@ -153,7 +153,7 @@ This follows a least-privilege model by restricting image publishing access to t
 
 ⸻
 
-Terraform Validation
+## Terraform Validation
 
 The configuration was validated using:
 
@@ -181,7 +181,7 @@ No existing Project Atlas infrastructure was modified or destroyed.
 
 ⸻
 
-AWS Verification
+## AWS Verification
 
 The GitHub Actions role was verified through the AWS CLI:
 
@@ -206,7 +206,7 @@ project-atlas-ecr-push
 
 ⸻
 
-GitHub Actions Workflow Changes
+## GitHub Actions Workflow Changes
 
 The existing workflow:
 
@@ -226,7 +226,7 @@ env:
 
 ⸻
 
-AWS Authentication
+## AWS Authentication
 
 The pipeline configures AWS credentials by assuming the Terraform-managed IAM role:
 
@@ -240,7 +240,7 @@ No long-lived AWS access key or secret key is stored in the workflow.
 
 ⸻
 
-Amazon ECR Login
+## Amazon ECR Login
 
 After obtaining temporary AWS credentials, GitHub Actions authenticates Docker with Amazon ECR:
 
@@ -250,7 +250,7 @@ After obtaining temporary AWS credentials, GitHub Actions authenticates Docker w
 
 ⸻
 
-Commit-Based Image Versioning
+## Commit-Based Image Versioning
 
 Docker images are tagged using the Git commit SHA:
 
@@ -278,7 +278,7 @@ ECR Tag = Commit SHA
 
 ⸻
 
-Current Validation Status
+## Current Validation Status
 
 The AWS OIDC provider, IAM role, and ECR permissions have been successfully provisioned and verified.
 
@@ -308,7 +308,7 @@ End-to-End ECR Publishing          ⏳ Troubleshooting
 
 ⸻
 
-Troubleshooting Approach
+## Troubleshooting Approach
 
 The next investigation step is to inspect the first failed step in the GitHub Actions test-and-build job.
 
@@ -324,7 +324,7 @@ The first failing stage will be identified from GitHub Actions logs and correcte
 
 ⸻
 
-Evidence
+## Evidence
 
 Terraform OIDC / IAM Provisioning
 
@@ -334,7 +334,9 @@ ECR Image Publishing Configuration
 
 ⸻
 
-Key Takeaways
+
+⸻
+## Key Takeaways
 
 * Implemented AWS authentication for GitHub Actions using OIDC.
 * Avoided storing long-lived AWS access keys in GitHub.
@@ -349,7 +351,7 @@ Key Takeaways
 
 ⸻
 
-Result
+## Result
 
 Project Atlas now has the infrastructure and workflow configuration required for secure GitHub Actions authentication to AWS and automated Amazon ECR publishing.
 
