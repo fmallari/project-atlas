@@ -1,4 +1,4 @@
-### Ticket 030 — GitHub OIDC and Automated ECR Publishing
+# Ticket 030 — GitHub OIDC and Automated ECR Publishing
 
 Objective
 
