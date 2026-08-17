@@ -39,7 +39,7 @@ jobs:
       - name: Build Docker image
         run: docker build -t project-atlas:${{ github.sha }} .
       
-            - name: Configure AWS credentials
+      - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v5
         with:
           role-to-assume: arn:aws:iam::764553891483:role/project-atlas-github-actions
