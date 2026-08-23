@@ -16,7 +16,13 @@ resource "aws_instance" "project_atlas" {
   vpc_security_group_ids = [
     "sg-02e05024074ab57ef"
   ]
-
+  root_block_device {
+    volume_size = 12
+    volume_type = "gp3"
+    iops        = 3000
+    throughput  = 125
+    encrypted   = false
+  }
   tags = {
     Name = "project-atlas"
   }
