@@ -176,10 +176,13 @@ The deployment was validated at multiple layers:
 
 ## Evidence
 
-- `ecr-image-verification.png`
-- `container-health-check.png`
-- `production-container-cutover.png`
-- `disk-capacity-remediation.png`
+![Container health check](../../screenshots/Ticket-031/container-running-health-check.png)
+
+![Disk capacity remediation](../../screenshots/Ticket-031/disk-capacity-remediation.png)
+
+![ECR image verification](../../screenshots/Ticket-031/ecr-image-verification.png)
+
+![Production cutover verification](../../screenshots/Ticket-031/production-cutover-verification.png)
 
 ## Result
 
