@@ -9,6 +9,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY app.py .
 COPY services ./services
 COPY templates ./templates
+COPY static ./static
 
 EXPOSE 8000
 
