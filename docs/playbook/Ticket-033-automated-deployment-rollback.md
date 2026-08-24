@@ -38,6 +38,8 @@ Gunicorn
    |
 Flask / Project Atlas
 
+```
+
 Container images are stored in Amazon ECR and deployed to the EC2 instance.
 
 ##Problem
@@ -279,13 +281,13 @@ Project Atlas now has a deployment workflow capable of detecting a degraded con$
 The final test intentionally deployed an image with a missing production asset,$
 
 ### 1. Automated Deployment Success
-![Automated Deployment Success](../../screenshots/Ticket-033/automated-deployme$
+![Automated Deployment Success](../../screenshots/Ticket-033/automated-deployment-success.png)
 
 ### 2. Automatic Rollback Success
-![Automatic Rollback Success](../../screenshots/Ticket-033/automatic-rollback-s$
+![Automatic Rollback Success](../../screenshots/Ticket-033/automatic-rollback-success.png)
 
 ### 3. Post Rollback Production Validation
-![Post Rollback Production Validation](../../screenshots/Ticket-033/post-rollba$
+![Post Rollback Production Validation](../../screenshots/Ticket-033/post-rollback-production-validation.png)
 
 
 
