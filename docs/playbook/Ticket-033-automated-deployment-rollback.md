@@ -44,7 +44,7 @@ Container images are stored in Amazon ECR and deployed to the EC2 instance.
 
 ##Problem
 
-A successful container start does not necessarily mean a successful application$
+A successful container start does not necessarily mean a successful application deployment.
 
 During earlier containerization work, an image could:
 
@@ -52,9 +52,9 @@ During earlier containerization work, an image could:
 * respond to the application health endpoint,
 * but still be missing required static assets.
 
-This created a situation where /health could report the application as healthy $
+This created a situation where /health could report the application as healthy 
 
-A safer deployment process needed to validate both application health and a cri$
+A safer deployment process needed to validate both application health and a critical frontend asset before declaring the deployment successful.
 
 ## Deployment Workflow
 
@@ -99,7 +99,7 @@ http://127.0.0.1:8080/static/css/portfolio.css
 
 A successful deployment requires the asset to return HTTP 200.
 
-This additional validation protects against a deployment where the backend is t$
+This additional validation protects against a deployment where the backend is technically running but the portfolio is incomplete or visually broken.
 
 -----
 
@@ -127,7 +127,7 @@ It then automatically initiated rollback to the previously running image:
 923f6a6dc4fae007823f7e49e111c398ca48b584
 ```
 
-The rollback process recreated the Project Atlas container using the previous i$
+The rollback process recreated the Project Atlas container using the previous image and reran deployment validation.
    
 Both checks succeeded.
 
@@ -173,11 +173,11 @@ Content-Type: text/css; charset=utf-8
 
 ## Issues Encountered
 
-Several problems were discovered while building and testing the deployment auto$
+Several problems were discovered while building and testing the deployment automation.
    
 Docker image reference formatting
 
-An incorrectly placed shell continuation character caused Docker to receive a m$
+An incorrectly placed shell continuation character caused Docker to receive a malformed image reference. 
 
 This produced:
 
@@ -185,20 +185,20 @@ This produced:
 invalid reference format
 ```
    
-The deployment function was corrected so the complete image reference is passed$
+The deployment function was corrected so the complete image reference is passed cleanly to docker create. 
 
 Shell command substitution
 
-The command used to determine the currently running image initially contained m$
+The command used to determine the currently running image initially contained malformed syntax.
 
 It was corrected to:
 
 ```bash
-CURRENT_IMAGE="$(docker inspect --format='{{.Config.Image}}' "$CONTAINER_NAME" $
+CURRENT_IMAGE="$(docker inspect --format='{{.Config.Image}}' "$CONTAINER_NAME" 2>/dev/null || true)"
 ```
 ### Validation command formatting
 
-Multiline curl commands initially caused the URL to be interpreted as a separat$
+Multiline curl commands initially caused the URL to be interpreted as a separate shell command.
 
 This produced:
 ```text
@@ -209,7 +209,7 @@ The validation commands were simplified to prevent shell continuation errors.
 
 ### Rollback execution
 
-The deployment path was adjusted so a failure while creating or starting the ca$
+The deployment path was adjusted so a failure while creating or starting the candidate container would also trigger rollback rather than allowing set -e to terminate the script before recovery logic could execute. 
 
 ---
 
@@ -219,11 +219,11 @@ This ticket demonstrated an important reliability principle:
 
 A running process is not necessarily a healthy service.
 
-Checking only Docker or Gunicorn process state would not have detected the brok$
+Checking only Docker or Gunicorn process state would not have detected the broken frontend. 
 
-By validating both the application’s health endpoint and a production-critical $
+By validating both the application’s health endpoint and a production-critical static asset, the deployment process now tests whether Project Atlas is actually capable of serving the expected application. 
 
-The rollback test also reinforced the value of retaining the previously deploye$
+The rollback test also reinforced the value of retaining the previously deployed immutable image. Instead of attempting to repair a failed release in place, the deployment process can restore a known-good artifact. 
 
 ---
 
@@ -240,7 +240,7 @@ Ticket 033 introduced:
 * Post-rollback validation
 * Known-good image recovery
 
-These controls reduce the risk of leaving Project Atlas in a degraded state aft$
+These controls reduce the risk of leaving Project Atlas in a degraded state after a deployment. 
 
 ---
 
@@ -276,9 +276,9 @@ Screenshots for this ticket document:
 
 ## Outcome
 
-Project Atlas now has a deployment workflow capable of detecting a degraded con$
+Project Atlas now has a deployment workflow capable of detecting a degraded container release and automatically restoring the previously running image. 
 
-The final test intentionally deployed an image with a missing production asset,$
+The final test intentionally deployed an image with a missing production asset, detected the failure through HTTP validation, restored the known-good ECR image, and returned the production application to a fully healthy state. 
 
 ### 1. Automated Deployment Success
 ![Automated Deployment Success](../../screenshots/Ticket-033/automated-deployment-success.png)
