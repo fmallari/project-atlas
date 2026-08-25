@@ -37,3 +37,8 @@ resource "aws_iam_role_policy" "project_atlas_ecr_pull" {
     ]
   })
 }
+
+resource "aws_iam_role_policy_attachment" "project_atlas_ssm" {
+  role       = data.aws_iam_role.project_atlas_ec2.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+}

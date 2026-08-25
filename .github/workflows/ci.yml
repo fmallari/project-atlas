@@ -46,13 +46,78 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Login to Amazon ECR
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
 
       - name: Tag and push image to ECR
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           IMAGE_TAG: ${{ github.sha }}
         run: |
           docker tag project-atlas:${{ github.sha }} $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+      - name: Deploy to EC2 through SSM
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        id: deploy
+        run: |
+          COMMAND_ID=$(aws ssm send-command \
+            --region "$AWS_REGION" \
+            --instance-ids "i-04d2e8e83c761e54c" \
+            --document-name "AWS-RunShellScript" \
+            --parameters 'commands=["sudo /usr/local/bin/deploy-project-atlas.sh ${{ github.sha }}"]' \
+            --query 'Command.CommandId' \
+            --output text)
+
+          echo "SSM Command ID: $COMMAND_ID"
+          echo "command_id=$COMMAND_ID" >> "$GITHUB_OUTPUT"
+
+      - name: Wait for production deployment
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          COMMAND_ID="${{ steps.deploy.outputs.command_id }}"
+
+          for attempt in {1..30}; do
+            STATUS=$(aws ssm get-command-invocation \
+              --region "$AWS_REGION" \
+              --command-id "$COMMAND_ID" \
+              --instance-id "i-04d2e8e83c761e54c" \
+              --query 'Status' \
+              --output text 2>/dev/null || echo "Pending")
+
+            echo "Deployment status: $STATUS"
+
+            case "$STATUS" in
+              Success)
+                echo "Production deployment succeeded."
+
+                aws ssm get-command-invocation \
+                  --region "$AWS_REGION" \
+                  --command-id "$COMMAND_ID" \
+                  --instance-id "i-04d2e8e83c761e54c" \
+                  --query 'StandardOutputContent' \
+                  --output text
+
+                exit 0
+                ;;
+
+              Failed|Cancelled|TimedOut)
+                echo "Production deployment failed."
+
+                aws ssm get-command-invocation \
+                  --region "$AWS_REGION" \
+                  --command-id "$COMMAND_ID" \
+                  --instance-id "i-04d2e8e83c761e54c" \
+                  --query '[StandardOutputContent,StandardErrorContent]' \
+                  --output text
+
+                exit 1
+                ;;
+            esac
+
+            sleep 5
+          done
+
+          echo "Deployment did not complete within the expected time."
+          exit 1

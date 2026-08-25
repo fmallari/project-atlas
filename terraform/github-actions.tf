@@ -73,6 +73,30 @@ resource "aws_iam_role_policy" "github_actions_ecr" {
         Resource = "*"
       },
       {
+        Sid    = "SSMDeployProjectAtlas"
+        Effect = "Allow"
+
+        Action = [
+          "ssm:SendCommand"
+        ]
+
+        Resource = [
+          "arn:aws:ec2:us-east-2:764553891483:instance/i-04d2e8e83c761e54c",
+          "arn:aws:ssm:us-east-2::document/AWS-RunShellScript"
+        ]
+      },
+      {
+        Sid    = "SSMReadCommandStatus"
+        Effect = "Allow"
+
+        Action = [
+          "ssm:GetCommandInvocation",
+          "ssm:ListCommandInvocations"
+        ]
+
+        Resource = "*"
+      },
+      {
         Sid    = "ECRPushImage"
         Effect = "Allow"
 
