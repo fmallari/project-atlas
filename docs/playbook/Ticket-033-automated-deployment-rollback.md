@@ -2,9 +2,9 @@
 
 ## Objective
 
-Improve the Project Atlas deployment process by adding automated post-deploymen$
+Improve the Project Atlas deployment process by adding automated post-deployment validation and rollback behavior. 
 
-The goal was to ensure that a newly deployed container is not considered succes$
+The goal was to ensure that a newly deployed container is not considered successful simply because it started. The deployment must also prove that the application and critical frontend assets are available. If validation fails, Project Atlas should automatically restore the previously running container image.
 
 ---
 
